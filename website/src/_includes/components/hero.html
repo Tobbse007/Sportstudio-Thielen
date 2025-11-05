@@ -1,0 +1,16 @@
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-text">
+        <h1 class="hero-title">{{ title }}</h1>
+        <p class="hero-subtitle">{{ subtitle }}</p>
+        {% if cta_text %}
+        <div class="hero-cta">
+          <a href="{{ cta_link }}" class="btn btn-primary btn-lg">{{ cta_text }}</a>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+</section>

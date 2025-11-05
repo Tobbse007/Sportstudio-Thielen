@@ -1,0 +1,8 @@
+{
+  "id": "hero-fullscreen",
+  "name": "Hero - Fullscreen",
+  "category": "hero",
+  "icon": "fa-solid fa-rocket",
+  "description": "Fullscreen Hero mit Gradient-Hintergrund",
+  "template": "<section class=\"min-h-screen flex items-center justify-center bg-gradient-to-br from-[{{primaryColor}}] via-[{{secondaryColor}}] to-[{{accentColor}}] text-white relative overflow-hidden\">\n  <div class=\"absolute inset-0 bg-black/20\"></div>\n  <div class=\"{{containerWidth}} mx-auto px-6 text-center relative z-10 {{spacing}}\">\n    <h1 class=\"text-6xl md:text-7xl {{fontFamily}} {{fontWeight}} mb-6 animate-fade-in\" contenteditable=\"true\">\n      Dein Oldschool Gym\n    </h1>\n    <p class=\"text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-white/90 {{fontSize}}\" contenteditable=\"true\">\n      Authentisch. Familiär. Seit den 90ern.\n    </p>\n    <div class=\"flex gap-4 justify-center flex-wrap\">\n      <button class=\"bg-white text-[{{primaryColor}}] px-8 py-4 rounded-[{{borderRadius}}] {{fontWeight}} hover:scale-105 hover:shadow-2xl transition-all duration-300\" contenteditable=\"true\">\n        <i class=\"fa-solid fa-dumbbell mr-2\"></i>Probetraining buchen\n      </button>\n      <button class=\"bg-transparent border-2 border-white text-white px-8 py-4 rounded-[{{borderRadius}}] {{fontWeight}} hover:bg-white hover:text-[{{primaryColor}}] transition-all duration-300\" contenteditable=\"true\">\n        <i class=\"fa-solid fa-circle-info mr-2\"></i>Mehr erfahren\n      </button>\n    </div>\n  </div>\n</section>"
+}

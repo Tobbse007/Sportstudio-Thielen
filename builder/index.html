@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Website Builder - Professional Edition</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏗️</text></svg>">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            'display': ['Montserrat', 'sans-serif'],
+            'body': ['Montserrat', 'sans-serif'],
+          },
+        }
+      }
+    }
+  </script>
+  
+  <!-- Google Fonts - FitX Style (Montserrat) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Sortable.js für Drag & Drop -->
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+  
+  <!-- Font Awesome Icons - JSDelivr CDN (no CORS issues) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  
+  <!-- Font Awesome Fehleranalyse -->
+  <script>
+    console.log('🔍 Font Awesome Fehleranalyse gestartet...');
+    
+    window.addEventListener('load', () => {
+      console.log('📄 Seite vollständig geladen');
+      
+      setTimeout(() => {
+        // 1. Prüfe ob Link-Tag vorhanden ist
+        const faLink = document.querySelector('link[href*="fontawesome"]');
+        if (faLink) {
+          console.log('✅ Font Awesome Link-Tag gefunden:', faLink.href);
+        } else {
+          console.error('❌ Font Awesome Link-Tag NICHT gefunden!');
+        }
+        
+        // 2. Prüfe alle geladenen Stylesheets
+        console.log('📋 Geladene Stylesheets:', document.styleSheets.length);
+        let faStylesheet = null;
+        for (let i = 0; i < document.styleSheets.length; i++) {
+          try {
+            const sheet = document.styleSheets[i];
+            if (sheet.href && sheet.href.includes('fontawesome')) {
+              faStylesheet = sheet;
+              console.log('✅ Font Awesome Stylesheet gefunden:', sheet.href);
+              console.log('   - Regeln:', sheet.cssRules ? sheet.cssRules.length : 'KEIN ZUGRIFF');
+            }
+          } catch(e) {
+            console.warn('⚠️ Kann Stylesheet nicht zugreifen:', e.message);
+          }
+        }
+        
+        if (!faStylesheet) {
+          console.error('❌ Font Awesome Stylesheet NICHT in styleSheets gefunden!');
+        }
+        
+        // 3. Erstelle Test-Icon und prüfe Styles
+        const testIcon = document.createElement('i');
+        testIcon.className = 'fas fa-eye';
+        testIcon.style.position = 'absolute';
+        testIcon.style.left = '-9999px';
+        document.body.appendChild(testIcon);
+        
+        console.log('🧪 Test-Icon erstellt mit Klassen:', testIcon.className);
+        
+        setTimeout(() => {
+          const computed = window.getComputedStyle(testIcon);
+          const fontFamily = computed.getPropertyValue('font-family');
+          const fontWeight = computed.getPropertyValue('font-weight');
+          const content = computed.getPropertyValue('content');
+          
+          console.log('📊 Test-Icon Computed Styles:');
+          console.log('   - font-family:', fontFamily);
+          console.log('   - font-weight:', fontWeight);
+          console.log('   - content:', content);
+          
+          if (fontFamily.includes('Font Awesome') || fontFamily.includes('FontAwesome')) {
+            console.log('✅ Font Awesome ERFOLGREICH GELADEN! 🎉');
+          } else {
+            console.error('❌ Font Awesome NICHT geladen!');
+            console.error('   Erwartete font-family: "Font Awesome 6 Free"');
+            console.error('   Gefundene font-family:', fontFamily);
+          }
+          
+          // 4. Liste Icons auf
+          const allIcons = document.querySelectorAll('i[class*="fa-"]');
+          console.log('🔢 Gefundene Icons auf der Seite:', allIcons.length);
+          
+          document.body.removeChild(testIcon);
+        }, 200);
+        
+      }, 500);
+    });
+    
+    // Netzwerk-Fehler überwachen
+    window.addEventListener('error', (e) => {
+      if (e.target.tagName === 'LINK' && e.target.href.includes('fontawesome')) {
+        console.error('❌ NETZWERK-FEHLER beim Laden von Font Awesome CSS:', e.target.href);
+      }
+    }, true);
+  </script>
+  
+  <style>
+    /* Montserrat für Text-Elemente, ABER NICHT für Icons */
+    body {
+      background: #fafafa;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    /* FitX-Style Global Font Override - NUR für Text-Elemente */
+    h1, h2, h3, h4, h5, h6, p, span:not([class*="fa-"]), div:not([class*="fa-"]), a:not([class*="fa-"]), button, input, textarea, select, label {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    /* Font Awesome Icons explizit AUSSCHLIESSEN */
+    i[class*="fa-"],
+    .fas, .far, .fal, .fat, .fab, .fa-solid, .fa-regular, .fa-light, .fa-thin, .fa-brands,
+    .section-controls i,
+    .control-btn i,
+    .category-card i,
+    .section-library-item i {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "Font Awesome 6 Brands", "FontAwesome" !important;
+      font-style: normal;
+      font-variant: normal;
+      text-rendering: auto;
+      -webkit-font-smoothing: antialiased;
+    }
+    
+    /* Stelle sicher, dass Font Awesome Icons die richtige font-weight haben */
+    .fas, .fa-solid, i.fas, i[class*="fa-solid"] {
+      font-weight: 900 !important;
+    }
+    
+    .far, .fa-regular, i.far, i[class*="fa-regular"] {
+      font-weight: 400 !important;
+    }
+    
+    .fab, .fa-brands, i.fab, i[class*="fa-brands"] {
+      font-weight: 400 !important;
+    }
+    
+    /* Section Placeholder */
+    .section-placeholder {
+      border: 2px dashed #e5e7eb;
+      background: #ffffff;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #9ca3af;
+      border-radius: 12px;
+      margin: 20px;
+    }
+    
+    /* Section Item */
+    .section-item {
+      position: relative;
+      margin: 16px;
+      border-radius: 12px;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border: 1px solid #f3f4f6;
+      background: white;
+      overflow: hidden;
+    }
+    
+    .section-item:hover {
+      box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+      border-color: #3b82f6;
+    }
+    
+    .section-item:hover .section-controls {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Section Controls */
+    .section-controls {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      z-index: 100;
+      display: flex;
+      gap: 6px;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(12px);
+      padding: 6px;
+      border-radius: 10px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .control-btn {
+      width: 32px;
+      height: 32px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: all 0.2s;
+      background: white;
+      border: 1px solid #e5e7eb;
+      color: #6b7280;
+    }
+    
+    .control-btn:hover {
+      transform: scale(1.1);
+      color: white;
+    }
+    
+    .control-btn.edit:hover { background: #3b82f6; border-color: #3b82f6; }
+    .control-btn.move-up:hover { background: #8b5cf6; border-color: #8b5cf6; }
+    .control-btn.move-down:hover { background: #8b5cf6; border-color: #8b5cf6; }
+    .control-btn.flip:hover { background: #10b981; border-color: #10b981; }
+    .control-btn.duplicate:hover { background: #f59e0b; border-color: #f59e0b; }
+    .control-btn.delete:hover { background: #ef4444; border-color: #ef4444; }
+    
+    /* Dragging State */
+    .dragging {
+      opacity: 0.4;
+      transform: scale(0.95);
+    }
+    
+    /* Section Library */
+    .section-library-item {
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      padding: 12px;
+    }
+    
+    .section-library-item:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      border-color: #3b82f6;
+    }
+    
+    .section-library-item:active {
+      transform: scale(0.98);
+    }
+    
+    /* Sidebar */
+    .sidebar {
+      background: #ffffff;
+      border-right: 1px solid #e5e7eb;
+      height: calc(100vh - 64px);
+      overflow-y: auto;
+    }
+    
+    .sidebar::-webkit-scrollbar {
+      width: 6px;
+    }
+    
+    .sidebar::-webkit-scrollbar-track {
+      background: transparent;
+    }
+    
+    .sidebar::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 3px;
+    }
+    
+    .sidebar::-webkit-scrollbar-thumb:hover {
+      background: #9ca3af;
+    }
+    
+    /* Canvas */
+    #website-canvas {
+      background: #fafafa;
+      min-height: calc(100vh - 64px);
+      overflow-y: auto;
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    #website-canvas * {
+      font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    #website-canvas::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    #website-canvas::-webkit-scrollbar-track {
+      background: #f9fafb;
+    }
+    
+    #website-canvas::-webkit-scrollbar-thumb {
+      background: #d1d5db;
+      border-radius: 4px;
+    }
+    
+    /* Header */
+    .builder-header {
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid #e5e7eb;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+    
+    /* Buttons */
+    .btn {
+      font-weight: 500;
+      transition: all 0.2s;
+      border-radius: 8px;
+      padding: 8px 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    
+    .btn:active {
+      transform: scale(0.98);
+    }
+    
+    /* Modal */
+    .modal-backdrop {
+      background: rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(4px);
+    }
+    
+    .modal-content {
+      border-radius: 16px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+    
+    /* Input Styles */
+    input[type="color"] {
+      width: 100%;
+      height: 44px;
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      cursor: pointer;
+    }
+    
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: #e5e7eb;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #3b82f6;
+      cursor: pointer;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    
+    select {
+      border-radius: 8px;
+      border: 1px solid #e5e7eb;
+      padding: 10px 12px;
+      background: white;
+      cursor: pointer;
+    }
+    
+    /* Category Headers */
+    .category-header {
+      color: #6b7280;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-top: 16px;
+      margin-bottom: 8px;
+      padding: 0 4px;
+    }
+    
+    /* Flip Animation */
+    @keyframes flipSection {
+      0% { transform: rotateY(0deg); }
+      50% { transform: rotateY(90deg); }
+      100% { transform: rotateY(0deg); }
+    }
+    
+    .flipping {
+      animation: flipSection 0.5s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-50">
+  
+  <!-- Builder Header -->
+  <header class="builder-header">
+    <div class="max-w-full mx-auto px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-4">
+        <i class="fas fa-layer-group text-2xl text-blue-600"></i>
+        <div>
+          <h1 class="text-xl font-bold text-gray-900">Website Builder</h1>
+          <p class="text-xs text-gray-500">Professional Edition</p>
+        </div>
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <button onclick="togglePanel('styles')" class="btn bg-white text-gray-700 border border-gray-300 hover:bg-gray-50">
+          <i class="fas fa-palette"></i>
+          <span class="hidden md:inline">Styles</span>
+        </button>
+        <button onclick="togglePanel('sections')" class="btn bg-white text-gray-700 border border-gray-300 hover:bg-gray-50">
+          <i class="fas fa-plus-circle"></i>
+          <span class="hidden md:inline">Sections</span>
+        </button>
+        <button onclick="previewWebsite()" class="btn bg-purple-600 text-white hover:bg-purple-700">
+          <i class="fas fa-eye"></i>
+          <span class="hidden md:inline">Vorschau</span>
+        </button>
+        <button onclick="exportHTML()" class="btn bg-blue-600 text-white hover:bg-blue-700">
+          <i class="fas fa-download"></i>
+          <span class="hidden md:inline">Exportieren</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="flex h-[calc(100vh-64px)]">
+    
+    <!-- Sidebar: Section Library -->
+    <aside id="sections-panel" class="sidebar w-80 hidden">
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-base font-semibold text-gray-900 flex items-center gap-2">
+            <i class="fas fa-th-large text-blue-600"></i>
+            Section Library
+          </h2>
+          <button onclick="togglePanel('sections')" class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <!-- Kategorien Ansicht -->
+        <div id="categories-view" class="space-y-2">
+          <!-- Kategorien werden hier eingefügt -->
+        </div>
+        
+        <!-- Sections Ansicht (versteckt) -->
+        <div id="sections-view" class="hidden">
+          <button onclick="backToCategories()" class="w-full mb-4 px-4 py-2 text-left text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-100 rounded-lg transition-colors flex items-center gap-2">
+            <i class="fas fa-arrow-left"></i>
+            Zurück zu Kategorien
+          </button>
+          <h3 id="category-title" class="text-sm font-semibold text-gray-700 mb-3"></h3>
+          <div id="category-sections" class="space-y-2">
+            <!-- Sections der Kategorie werden hier eingefügt -->
+          </div>
+        </div>
+      </div>
+    </aside>
+    
+    <!-- Sidebar: Global Styles -->
+    <aside id="styles-panel" class="sidebar w-96 hidden">
+      <div class="p-4">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-base font-semibold text-gray-900 flex items-center gap-2">
+            <i class="fas fa-palette text-blue-600"></i>
+            Globale Styles
+          </h2>
+          <button onclick="togglePanel('styles')" class="text-gray-400 hover:text-gray-600">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <div class="space-y-4">
+          <!-- Presets -->
+          <div class="bg-gradient-to-br from-blue-50 to-purple-50 p-4 rounded-lg border-2 border-blue-200">
+            <h3 class="text-sm font-semibold text-gray-800 mb-3 flex items-center gap-2">
+              <i class="fas fa-wand-magic-sparkles text-purple-600"></i>
+              Style Presets
+            </h3>
+            
+            <div class="grid grid-cols-2 gap-2 mb-3">
+              <button onclick="loadPreset('fitx')" class="preset-btn bg-gradient-to-br from-orange-500 to-black hover:from-orange-600 hover:to-gray-900 border-2 border-orange-400 rounded-lg p-3 transition-all text-white">
+                <i class="fas fa-dumbbell text-yellow-400 mb-1"></i>
+                <div class="text-xs font-medium">FitX Style ⭐</div>
+              </button>
+              
+              <button onclick="loadPreset('default')" class="preset-btn bg-white hover:bg-blue-50 border-2 border-gray-300 hover:border-blue-500 rounded-lg p-3 transition-all">
+                <i class="fas fa-circle text-blue-500 mb-1"></i>
+                <div class="text-xs font-medium">Standard Blau</div>
+              </button>
+              
+              <button onclick="loadPreset('dark')" class="preset-btn bg-gray-900 hover:bg-gray-800 border-2 border-gray-700 hover:border-purple-500 rounded-lg p-3 transition-all text-white">
+                <i class="fas fa-moon text-purple-400 mb-1"></i>
+                <div class="text-xs font-medium">Dark Mode</div>
+              </button>
+              
+              <button onclick="loadPreset('minimal')" class="preset-btn bg-white hover:bg-gray-50 border-2 border-black hover:border-gray-700 rounded-lg p-3 transition-all">
+                <i class="fas fa-minimize text-gray-800 mb-1"></i>
+                <div class="text-xs font-medium">Minimal</div>
+              </button>
+              
+              <button onclick="loadPreset('vibrant')" class="preset-btn bg-gradient-to-br from-pink-400 to-purple-500 hover:from-pink-500 hover:to-purple-600 border-2 border-pink-300 rounded-lg p-3 transition-all text-white">
+                <i class="fas fa-wand-magic-sparkles mb-1"></i>
+                <div class="text-xs font-medium">Vibrant</div>
+              </button>
+              
+              <button onclick="saveCustomPreset()" class="preset-btn bg-white hover:bg-green-50 border-2 border-dashed border-gray-400 hover:border-green-500 rounded-lg p-3 transition-all">
+                <i class="fas fa-plus text-green-600 mb-1"></i>
+                <div class="text-xs font-medium">Speichern</div>
+              </button>
+            </div>
+            
+            <p class="text-xs text-gray-600 italic">
+              <i class="fas fa-info-circle mr-1"></i>
+              Klicke auf "Speichern" um dein aktuelles Design als Preset zu sichern
+            </p>
+          </div>
+          
+          <!-- Farben -->
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+              <i class="fas fa-palette"></i>
+              Farben
+            </h3>
+            
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Primary Color</label>
+                <input type="color" id="primaryColor" value="#3b82f6" 
+                       onchange="updateGlobalStyle('primaryColor', this.value)">
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Secondary Color</label>
+                <input type="color" id="secondaryColor" value="#1f2937" 
+                       onchange="updateGlobalStyle('secondaryColor', this.value)">
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Accent Color</label>
+                <input type="color" id="accentColor" value="#f59e0b" 
+                       onchange="updateGlobalStyle('accentColor', this.value)">
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Text Color</label>
+                <input type="color" id="textColor" value="#1f2937" 
+                       onchange="updateGlobalStyle('textColor', this.value)">
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Background Color</label>
+                <input type="color" id="backgroundColor" value="#ffffff" 
+                       onchange="updateGlobalStyle('backgroundColor', this.value)">
+              </div>
+            </div>
+          </div>
+          
+          <!-- Typografie -->
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+              <i class="fas fa-font"></i>
+              Typografie
+            </h3>
+            
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Schriftart</label>
+                <select id="fontFamily" onchange="updateGlobalStyle('fontFamily', this.value)" class="w-full">
+                  <option value="font-sans">Inter (Sans Serif)</option>
+                  <option value="font-serif">Serif</option>
+                  <option value="font-mono">Monospace</option>
+                  <option value="font-display">Display</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Basis-Schriftgröße</label>
+                <select id="fontSize" onchange="updateGlobalStyle('fontSize', this.value)" class="w-full">
+                  <option value="text-sm">Klein (14px)</option>
+                  <option value="text-base" selected>Normal (16px)</option>
+                  <option value="text-lg">Groß (18px)</option>
+                  <option value="text-xl">Extra Groß (20px)</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Schriftstärke</label>
+                <select id="fontWeight" onchange="updateGlobalStyle('fontWeight', this.value)" class="w-full">
+                  <option value="font-light">Light (300)</option>
+                  <option value="font-normal" selected>Normal (400)</option>
+                  <option value="font-medium">Medium (500)</option>
+                  <option value="font-semibold">Semibold (600)</option>
+                  <option value="font-bold">Bold (700)</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Layout -->
+          <div class="bg-gray-50 p-4 rounded-lg border border-gray-200">
+            <h3 class="text-sm font-semibold text-gray-700 mb-3 flex items-center gap-2">
+              <i class="fas fa-ruler-combined"></i>
+              Layout
+            </h3>
+            
+            <div class="space-y-3">
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Border Radius</label>
+                <input type="range" id="borderRadius" min="0" max="32" value="8" 
+                       oninput="updateGlobalStyle('borderRadius', this.value + 'px'); document.getElementById('borderRadiusValue').textContent = this.value + 'px'">
+                <span id="borderRadiusValue" class="text-xs text-gray-500">8px</span>
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Section Spacing</label>
+                <select id="spacing" onchange="updateGlobalStyle('spacing', this.value)" class="w-full">
+                  <option value="py-8">Klein (32px)</option>
+                  <option value="py-12">Mittel (48px)</option>
+                  <option value="py-16" selected>Normal (64px)</option>
+                  <option value="py-20">Groß (80px)</option>
+                  <option value="py-24">Extra Groß (96px)</option>
+                </select>
+              </div>
+              
+              <div>
+                <label class="block text-xs font-medium text-gray-600 mb-1">Container Breite</label>
+                <select id="containerWidth" onchange="updateGlobalStyle('containerWidth', this.value)" class="w-full">
+                  <option value="max-w-4xl">Schmal (896px)</option>
+                  <option value="max-w-5xl">Normal (1024px)</option>
+                  <option value="max-w-6xl">Mittel (1152px)</option>
+                  <option value="max-w-7xl" selected>Breit (1280px)</option>
+                  <option value="max-w-full">Full Width</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+          <button onclick="resetGlobalStyles()" 
+                  class="w-full btn bg-red-50 text-red-600 border border-red-200 hover:bg-red-100">
+            <i class="fas fa-undo"></i>
+            Styles zurücksetzen
+          </button>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Main Canvas -->
+    <main class="flex-1 overflow-y-auto" id="website-canvas">
+      <div class="max-w-full">
+        
+        <!-- Website Canvas -->
+        <div id="canvas-container">
+          <div class="section-placeholder">
+            <div class="text-center">
+              <i class="fas fa-mouse-pointer text-4xl mb-3"></i>
+              <p class="font-medium">Füge deine erste Section hinzu</p>
+              <p class="text-sm mt-1">Klicke auf "Sections" um zu starten</p>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </main>
+    
+  </div>
+
+  <!-- Section Editor Modal -->
+  <div id="section-editor-modal" class="modal-backdrop fixed inset-0 hidden items-center justify-center z-50">
+    <div class="modal-content bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto m-4">
+      <div class="p-6">
+        <div class="flex justify-between items-center mb-6">
+          <h3 class="text-xl font-bold text-gray-900">Section bearbeiten</h3>
+          <button onclick="closeEditor()" class="text-gray-400 hover:text-gray-600 transition">
+            <i class="fas fa-times text-xl"></i>
+          </button>
+        </div>
+        
+        <div id="section-editor-content">
+          <!-- Editor content wird hier eingefügt -->
+        </div>
+        
+        <div class="mt-6 flex gap-3">
+          <button onclick="saveSection()" 
+                  class="flex-1 btn bg-blue-600 text-white hover:bg-blue-700">
+            <i class="fas fa-save"></i> Speichern
+          </button>
+          <button onclick="closeEditor()" 
+                  class="btn bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Abbrechen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Confirm Modal -->
+  <div id="confirm-modal" class="modal-backdrop fixed inset-0 hidden items-center justify-center z-[60]">
+    <div class="modal-content bg-white max-w-md w-full m-4 p-6">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-red-100 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2" id="confirm-title">Bestätigung erforderlich</h3>
+        <p class="text-gray-600 mb-6" id="confirm-message">Möchtest du wirklich fortfahren?</p>
+        <div class="flex gap-3">
+          <button onclick="confirmModalCancel()" 
+                  class="flex-1 btn bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Abbrechen
+          </button>
+          <button onclick="confirmModalConfirm()" 
+                  class="flex-1 btn bg-red-600 text-white hover:bg-red-700">
+            <i class="fas fa-check"></i> Bestätigen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Alert Modal -->
+  <div id="alert-modal" class="modal-backdrop fixed inset-0 hidden items-center justify-center z-[60]">
+    <div class="modal-content bg-white max-w-md w-full m-4 p-6">
+      <div class="text-center">
+        <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-info-circle text-blue-600 text-xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2" id="alert-title">Information</h3>
+        <p class="text-gray-600 mb-6" id="alert-message">Nachricht</p>
+        <button onclick="closeAlert()" 
+                class="w-full btn bg-blue-600 text-white hover:bg-blue-700">
+          OK
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Input Modal -->
+  <div id="input-modal" class="modal-backdrop fixed inset-0 hidden items-center justify-center z-[60]">
+    <div class="modal-content bg-white max-w-md w-full m-4 p-6">
+      <div>
+        <div class="w-12 h-12 rounded-full bg-purple-100 flex items-center justify-center mx-auto mb-4">
+          <i class="fas fa-keyboard text-purple-600 text-xl"></i>
+        </div>
+        <h3 class="text-lg font-bold text-gray-900 mb-2 text-center" id="input-title">Eingabe erforderlich</h3>
+        <p class="text-gray-600 mb-4 text-center" id="input-message">Bitte gib einen Namen ein:</p>
+        <input type="text" id="input-field" 
+               class="w-full px-4 py-2 border-2 border-gray-300 rounded-lg focus:border-purple-500 focus:outline-none mb-6"
+               placeholder="Name eingeben...">
+        <div class="flex gap-3">
+          <button onclick="inputModalCancel()" 
+                  class="flex-1 btn bg-gray-200 text-gray-700 hover:bg-gray-300">
+            Abbrechen
+          </button>
+          <button onclick="inputModalConfirm()" 
+                  class="flex-1 btn bg-purple-600 text-white hover:bg-purple-700">
+            <i class="fas fa-check"></i> Bestätigen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="builder.js"></script>
+</body>
+</html>

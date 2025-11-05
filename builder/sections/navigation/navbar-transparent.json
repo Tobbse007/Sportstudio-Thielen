@@ -1,0 +1,8 @@
+{
+  "id": "navbar-transparent",
+  "name": "Navigation - Transparent",
+  "category": "navigation",
+  "icon": "fa-solid fa-wave-square",
+  "description": "Transparente Navigation über Hero-Section",
+  "template": "<nav class=\"fixed top-0 left-0 right-0 z-50 bg-gradient-to-b from-black/40 to-transparent backdrop-blur-sm transition-all duration-300\" data-transparent-nav=\"true\">\n  <div class=\"{{containerWidth}} mx-auto px-6\">\n    <div class=\"flex items-center justify-between h-20\">\n      <div class=\"flex items-center gap-3\">\n        <i class=\"fa-solid fa-dumbbell text-2xl text-white\"></i>\n        <span class=\"text-2xl {{fontFamily}} {{fontWeight}} text-white\" contenteditable=\"true\">Sportstudio Thielen</span>\n      </div>\n      <div class=\"hidden md:flex items-center gap-8 {{fontSize}}\">\n        <a href=\"#home\" class=\"text-white hover:text-[{{accentColor}}] transition-colors duration-200 {{fontWeight}}\" contenteditable=\"true\">Home</a>\n        <a href=\"#angebote\" class=\"text-white hover:text-[{{accentColor}}] transition-colors duration-200 {{fontWeight}}\" contenteditable=\"true\">Angebote</a>\n        <a href=\"#preise\" class=\"text-white hover:text-[{{accentColor}}] transition-colors duration-200 {{fontWeight}}\" contenteditable=\"true\">Preise</a>\n        <a href=\"#kontakt\" class=\"text-white hover:text-[{{accentColor}}] transition-colors duration-200 {{fontWeight}}\" contenteditable=\"true\">Kontakt</a>\n      </div>\n      <button class=\"md:hidden text-white text-2xl\">\n        <i class=\"fa-solid fa-bars\"></i>\n      </button>\n    </div>\n  </div>\n</nav>"
+}

@@ -1,0 +1,20 @@
+{
+  "id": "kategorie-beschreibung",
+  "name": "Section Name (wird im Builder angezeigt)",
+  "category": "hero|features|cta|pricing|contact|footer|navigation|gallery|team|testimonials",
+  "icon": "🎯",
+  "description": "Optional: Beschreibung der Section für Dokumentation",
+  "template": "<section class=\"{{spacing}} bg-white\">\n  <div class=\"container mx-auto px-4\">\n    <h2 class=\"text-4xl {{fontFamily}} font-bold text-center mb-12 text-[{{secondaryColor}}]\" contenteditable=\"true\">\n      Überschrift\n    </h2>\n    <p class=\"text-center text-gray-600\" contenteditable=\"true\">\n      Beschreibungstext\n    </p>\n  </div>\n</section>",
+  "editableFields": [
+    {
+      "name": "Überschrift",
+      "type": "text",
+      "selector": "h2"
+    },
+    {
+      "name": "Beschreibung",
+      "type": "text",
+      "selector": "p"
+    }
+  ]
+}

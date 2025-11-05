@@ -1,0 +1,153 @@
+---
+layout: layouts/base.html
+title: Sportstudio Thielen - Oldschool Gym Würchwitz
+description: Dein authentisches Oldschool Gym in Würchwitz. Seit den 90ern. Familiäre Atmosphäre, moderne Ausstattung, faire Preise.
+---
+
+{% set heroData = {
+  title: "Dein Oldschool Gym in Würchwitz",
+  subtitle: "Authentisch. Familiär. Seit den 90ern.",
+  cta_text: "Probetraining buchen",
+  cta_link: "/probetraining"
+} %}
+
+{% include "components/hero.html" %}
+
+<section class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Warum Sportstudio Thielen?</h2>
+    <p class="section-subtitle">Echtes Oldschool-Feeling, keine kommerzielle Fitness-Kette</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💪</div>
+        <h3>Oldschool Atmosphäre</h3>
+        <p>Authentisches Gym-Feeling mit klassischen Geräten</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>Familiäre Community</h3>
+        <p>Man kennt sich, unterstützend und entspannt</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🏋️</div>
+        <h3>Selbstständiges Training</h3>
+        <p>Freies Training ohne feste Kurse - wann du willst</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔓</div>
+        <h3>Chip-Zugang</h3>
+        <p>06:00 - 22:00 Uhr, beliebig lange bleiben</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Unsere Ausstattung</h2>
+    
+    <div class="equipment-grid">
+      <div class="equipment-item">
+        <h4>Kardio</h4>
+        <ul>
+          <li>Laufbänder</li>
+          <li>Fahrräder</li>
+          <li>Rudergerät</li>
+        </ul>
+      </div>
+      
+      <div class="equipment-item">
+        <h4>Kraft</h4>
+        <ul>
+          <li>Kraftgeräte</li>
+          <li>Freihanteln</li>
+          <li>Langhanteln</li>
+          <li>Kabeltürme</li>
+        </ul>
+      </div>
+      
+      <div class="equipment-item">
+        <h4>Functional</h4>
+        <ul>
+          <li>Functional Equipment</li>
+          <li>Boxsack</li>
+          <li>Verschiedene Bänke</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="container text-center">
+    <h2>Bereit für dein Training?</h2>
+    <p class="mb-lg">Komm vorbei und überzeug dich selbst!</p>
+    <a href="/probetraining" class="btn btn-primary btn-lg">Probetraining vereinbaren</a>
+  </div>
+</section>
+
+<style>
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.feature-card {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.equipment-item {
+  padding: var(--spacing-md);
+  background: var(--color-background-light);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.equipment-item h4 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.equipment-item ul {
+  list-style: none;
+}
+
+.equipment-item li {
+  padding: var(--spacing-xs) 0;
+  color: var(--color-text);
+}
+
+.equipment-item li:before {
+  content: "✓ ";
+  color: var(--color-primary);
+  font-weight: bold;
+}
+</style>

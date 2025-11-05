@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sportstudio Thielen - Oldschool Gym Würchwitz</title>
+  <meta name="description" content="Dein authentisches Oldschool Gym in Würchwitz. Seit den 90ern. Familiäre Atmosphäre, moderne Ausstattung, faire Preise.">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="/styles/variables.css">
+  <link rel="stylesheet" href="/styles/components.css">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <nav class="navigation">
+  <div class="container">
+    <div class="nav-wrapper">
+      <div class="nav-logo">
+        <a href="/">
+          <span class="logo-text">Sportstudio Thielen</span>
+          <span class="logo-tagline">Oldschool Gym</span>
+        </a>
+      </div>
+      
+      <button class="nav-toggle" aria-label="Menü öffnen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+      
+      <ul class="nav-menu">
+        <li><a href="/">Home</a></li>
+        <li><a href="/angebote">Angebote</a></li>
+        <li><a href="/preise">Preise</a></li>
+        <li><a href="/kontakt">Kontakt</a></li>
+      </ul>
+      
+      <div class="nav-cta">
+        <a href="/probetraining" class="btn btn-primary">Probetraining</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+  
+  <main>
+    
+
+
+<section class="hero">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="container">
+      <div class="hero-text">
+        <h1 class="hero-title">Sportstudio Thielen - Oldschool Gym Würchwitz</h1>
+        <p class="hero-subtitle"></p>
+        
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section section-light">
+  <div class="container">
+    <h2 class="section-title">Warum Sportstudio Thielen?</h2>
+    <p class="section-subtitle">Echtes Oldschool-Feeling, keine kommerzielle Fitness-Kette</p>
+    
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">💪</div>
+        <h3>Oldschool Atmosphäre</h3>
+        <p>Authentisches Gym-Feeling mit klassischen Geräten</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🤝</div>
+        <h3>Familiäre Community</h3>
+        <p>Man kennt sich, unterstützend und entspannt</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🏋️</div>
+        <h3>Selbstständiges Training</h3>
+        <p>Freies Training ohne feste Kurse - wann du willst</p>
+      </div>
+      
+      <div class="feature-card">
+        <div class="feature-icon">🔓</div>
+        <h3>Chip-Zugang</h3>
+        <p>06:00 - 22:00 Uhr, beliebig lange bleiben</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Unsere Ausstattung</h2>
+    
+    <div class="equipment-grid">
+      <div class="equipment-item">
+        <h4>Kardio</h4>
+        <ul>
+          <li>Laufbänder</li>
+          <li>Fahrräder</li>
+          <li>Rudergerät</li>
+        </ul>
+      </div>
+      
+      <div class="equipment-item">
+        <h4>Kraft</h4>
+        <ul>
+          <li>Kraftgeräte</li>
+          <li>Freihanteln</li>
+          <li>Langhanteln</li>
+          <li>Kabeltürme</li>
+        </ul>
+      </div>
+      
+      <div class="equipment-item">
+        <h4>Functional</h4>
+        <ul>
+          <li>Functional Equipment</li>
+          <li>Boxsack</li>
+          <li>Verschiedene Bänke</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-dark">
+  <div class="container text-center">
+    <h2>Bereit für dein Training?</h2>
+    <p class="mb-lg">Komm vorbei und überzeug dich selbst!</p>
+    <a href="/probetraining" class="btn btn-primary btn-lg">Probetraining vereinbaren</a>
+  </div>
+</section>
+
+<style>
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.feature-card {
+  text-align: center;
+  padding: var(--spacing-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition-base);
+}
+
+.feature-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-xl);
+}
+
+.feature-icon {
+  font-size: 3rem;
+  margin-bottom: var(--spacing-sm);
+}
+
+.equipment-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-xl);
+}
+
+.equipment-item {
+  padding: var(--spacing-md);
+  background: var(--color-background-light);
+  border-radius: var(--radius-md);
+  border-left: 4px solid var(--color-primary);
+}
+
+.equipment-item h4 {
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-primary);
+}
+
+.equipment-item ul {
+  list-style: none;
+}
+
+.equipment-item li {
+  padding: var(--spacing-xs) 0;
+  color: var(--color-text);
+}
+
+.equipment-item li:before {
+  content: "✓ ";
+  color: var(--color-primary);
+  font-weight: bold;
+}
+</style>
+
+  </main>
+  
+  <footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      
+      <!-- Info -->
+      <div class="footer-col">
+        <h3>Sportstudio Thielen</h3>
+        <p class="footer-tagline">Oldschool Gym</p>
+        <p>Dein authentisches Oldschool Gym in Würchwitz seit den 90ern</p>
+      </div>
+      
+      <!-- Kontakt -->
+      <div class="footer-col">
+        <h4>Kontakt</h4>
+        <ul class="footer-list">
+          <li>📞 <a href="tel:+49 123 456789">+49 123 456789</a></li>
+          <li>✉️ <a href="mailto:info@sportstudio-thielen.de">info@sportstudio-thielen.de</a></li>
+          <li>📍 Musterstraße 123<br>12345 Würchwitz</li>
+        </ul>
+      </div>
+      
+      <!-- Öffnungszeiten -->
+      <div class="footer-col">
+        <h4>Öffnungszeiten</h4>
+        <p><strong>06:00 - 22:00 Uhr (Chip-Zugang)</strong></p>
+        <p class="text-small">Beliebig lange bleiben möglich</p>
+      </div>
+      
+      <!-- Links -->
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul class="footer-list">
+          <li><a href="/angebote">Angebote</a></li>
+          <li><a href="/preise">Preise</a></li>
+          <li><a href="/kontakt">Kontakt</a></li>
+          <li><a href="/impressum">Impressum</a></li>
+          <li><a href="/datenschutz">Datenschutz</a></li>
+        </ul>
+      </div>
+      
+    </div>
+    
+    <!-- Copyright -->
+    <div class="footer-bottom">
+      <p>&copy; 2025 Sportstudio Thielen. Alle Rechte vorbehalten.</p>
+      <div class="footer-social">
+        <a href="#" target="_blank">Facebook</a>
+        <a href="#" target="_blank">Instagram</a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

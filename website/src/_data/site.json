@@ -1,0 +1,25 @@
+{
+  "title": "Sportstudio Thielen",
+  "tagline": "Oldschool Gym",
+  "description": "Dein authentisches Oldschool Gym in Würchwitz seit den 90ern",
+  
+  "contact": {
+    "phone": "+49 123 456789",
+    "email": "info@sportstudio-thielen.de",
+    "address": {
+      "street": "Musterstraße 123",
+      "city": "Würchwitz",
+      "zip": "12345"
+    }
+  },
+  
+  "opening_hours": {
+    "access": "06:00 - 22:00 Uhr (Chip-Zugang)",
+    "note": "Beliebig lange bleiben möglich"
+  },
+  
+  "social": {
+    "facebook": "#",
+    "instagram": "#"
+  }
+}
