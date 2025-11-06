@@ -706,8 +706,15 @@ function initDragAndDrop() {
 // ============================================
 
 function addSection(sectionId) {
+  DEBUG.log(`➕ Adding section: ${sectionId}`, 'info');
+  
   const section = sectionLibrary.find(s => s.id === sectionId);
-  if (!section) return;
+  if (!section) {
+    DEBUG.log(`  ❌ Section '${sectionId}' nicht gefunden!`, 'error');
+    return;
+  }
+  
+  DEBUG.log(`  ✓ Section gefunden: ${section.name}`, 'success');
   
   const canvas = document.getElementById('canvas-container');
   const placeholder = canvas.querySelector('.section-placeholder');
@@ -722,7 +729,10 @@ function addSection(sectionId) {
   sectionEl.setAttribute('data-section-type', sectionId);
   sectionEl.setAttribute('data-flippable', section.flippable || 'false');
   
+  DEBUG.log(`  🔄 Wende globale Styles an...`);
   const html = applyGlobalStyles(section.template);
+  
+  DEBUG.log(`  🔨 Erstelle Section HTML...`);
   
   sectionEl.innerHTML = `
     <div class="section-controls">
@@ -751,6 +761,16 @@ function addSection(sectionId) {
   `;
   
   canvas.appendChild(sectionEl);
+  
+  // Prüfe Icons
+  const icons = sectionEl.querySelectorAll('i[class*="fa-"]');
+  DEBUG.log(`  🎨 ${icons.length} Icons gefunden`, icons.length > 0 ? 'success' : 'warning');
+  
+  // Prüfe ob borderRadius angewendet wurde
+  const elementsWithRadius = sectionEl.querySelectorAll('[class*="rounded"]');
+  DEBUG.log(`  📐 ${elementsWithRadius.length} Elemente mit Abrundung`, 'info');
+  
+  DEBUG.log(`  ✅ Section '${uniqueId}' erfolgreich hinzugefügt!`, 'success');
 }
 
 function deleteSection(id) {
@@ -1126,35 +1146,110 @@ function applySectionPreset(preset) {
 // ============================================
 
 function updateGlobalStyle(property, value) {
+  DEBUG.log(`🎨 Updating global style: ${property} = ${value}`, 'info');
+  DEBUG.log(`  📋 Alter Wert: ${globalStyles[property]}`, 'info');
+  DEBUG.log(`  📋 Neuer Wert: ${value}`, 'info');
+  
   globalStyles[property] = value;
   
   // Update UI
   if (property === 'borderRadius') {
     document.getElementById('borderRadiusValue').textContent = value;
+    DEBUG.log(`  📐 BorderRadius UI aktualisiert: ${value}`, 'success');
+  }
+  
+  DEBUG.log(`  🔄 Refreshing all sections...`, 'info');
+  
+  // Spezielle Behandlung für borderRadius - direkt im DOM ändern
+  if (property === 'borderRadius') {
+    const canvas = document.getElementById('canvas-container');
+    const elementsWithRadius = canvas.querySelectorAll('[class*="rounded"]');
+    DEBUG.log(`  🔍 Gefunden: ${elementsWithRadius.length} Elemente mit Abrundung`, 'info');
+    
+    elementsWithRadius.forEach((el, idx) => {
+      // Extrahiere aktuelle rounded-Klassen
+      const roundedClasses = Array.from(el.classList).filter(cls => 
+        cls.startsWith('rounded-[') || cls.startsWith('rounded-')
+      );
+      
+      if (roundedClasses.length > 0) {
+        DEBUG.log(`  🎯 Element #${idx+1}: ${roundedClasses.join(', ')} → border-radius: ${value}`, 'info');
+        
+        // WICHTIG: Verwende inline style statt Tailwind-Klasse
+        // weil Tailwind CDN keine neuen arbitrary values on-the-fly kompiliert
+        const currentStyle = el.getAttribute('style') || '';
+        
+        // Entferne alte border-radius aus style
+        const styleWithoutRadius = currentStyle.replace(/border-radius:\s*[^;]+;?/g, '').trim();
+        
+        // Füge neuen border-radius hinzu
+        const newStyle = styleWithoutRadius ? `${styleWithoutRadius}; border-radius: ${value} !important;` : `border-radius: ${value} !important;`;
+        el.setAttribute('style', newStyle);
+      }
+    });
+    
+    DEBUG.log(`  ✅ BorderRadius als inline-style angewendet (Tailwind CDN unterstützt keine dynamischen arbitrary values)!`, 'success');
+    
+    // WICHTIG: KEIN refreshAllSections() aufrufen, weil das die inline-styles überschreibt!
+    DEBUG.log(`  ⚠️ refreshAllSections() übersprungen um inline-styles zu erhalten`, 'warning');
+    DEBUG.log(`  ✅ Global style 'borderRadius' erfolgreich aktualisiert!`, 'success');
+    return; // Früher return, refresh überspringen
   }
   
   // Alle Sections neu rendern
   refreshAllSections();
+  
+  DEBUG.log(`  ✅ Global style '${property}' erfolgreich aktualisiert!`, 'success');
 }
 
 function applyGlobalStyles(template) {
   let html = template;
   
+  DEBUG.log(`📝 Applying global styles to template...`);
+  
+  // Ersetze alle Platzhalter mit ihren Werten
   Object.keys(globalStyles).forEach(key => {
     const placeholder = `{{${key}}}`;
-    html = html.replaceAll(placeholder, globalStyles[key]);
+    const value = globalStyles[key];
+    const count = (html.match(new RegExp(placeholder.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g')) || []).length;
+    
+    if (count > 0) {
+      html = html.replaceAll(placeholder, value);
+      DEBUG.log(`  ✓ ${key}: ${value} (${count}x ersetzt)`, 'success');
+    }
   });
+  
+  // Debug: Prüfe ob noch Platzhalter übrig sind
+  const remainingPlaceholders = html.match(/\{\{[^}]+\}\}/g);
+  if (remainingPlaceholders) {
+    DEBUG.log(`  ⚠️ Noch ${remainingPlaceholders.length} Platzhalter übrig: ${remainingPlaceholders.join(', ')}`, 'warning');
+  }
   
   return html;
 }
 
 function refreshAllSections() {
+  DEBUG.log(`🔄 Refreshing all sections...`, 'info');
+  DEBUG.log(`  📊 Aktuelle globalStyles:`, 'info');
+  DEBUG.log(`    - borderRadius: ${globalStyles.borderRadius}`, 'info');
+  DEBUG.log(`    - primaryColor: ${globalStyles.primaryColor}`, 'info');
+  DEBUG.log(`    - fontSize: ${globalStyles.fontSize}`, 'info');
+  
   const canvas = document.getElementById('canvas-container');
   const sections = canvas.querySelectorAll('.section-item');
   
-  sections.forEach(sectionEl => {
+  DEBUG.log(`  📦 Gefunden: ${sections.length} Sections`, 'info');
+  
+  sections.forEach((sectionEl, index) => {
     const sectionType = sectionEl.getAttribute('data-section-type');
     const section = sectionLibrary.find(s => s.id === sectionType);
+    
+    if (!section) {
+      DEBUG.log(`  ⚠️ Section #${index+1}: Template nicht gefunden (${sectionType})`, 'warning');
+      return;
+    }
+    
+    DEBUG.log(`  🔧 Section #${index+1}: ${section.name}`, 'info');
     
     // Speichere per-section data attributes
     const bgColor = sectionEl.getAttribute('data-bg-color');
@@ -1165,73 +1260,85 @@ function refreshAllSections() {
     const fontSize = sectionEl.getAttribute('data-font-size');
     const fontWeight = sectionEl.getAttribute('data-font-weight');
     
-    if (section) {
-      const controls = sectionEl.querySelector('.section-controls').outerHTML;
-      const newHtml = applyGlobalStyles(section.template);
-      sectionEl.innerHTML = controls + newHtml;
+    // Speichere Controls
+    const controls = sectionEl.querySelector('.section-controls');
+    const controlsHTML = controls ? controls.outerHTML : '';
+    
+    // Wende globale Styles an
+    const newHtml = applyGlobalStyles(section.template);
+    
+    // Ersetze Inhalt
+    sectionEl.innerHTML = controlsHTML + newHtml;
+    
+    // Wende per-section Styles wieder an (überschreibt globale Styles)
+    const sectionContent = sectionEl.querySelector('section') || sectionEl.querySelector('nav') || sectionEl.querySelector('footer');
+    if (sectionContent) {
+      let styleAttr = '';
       
-      // Wende per-section Styles wieder an (überschreibt globale Styles)
-      const sectionContent = sectionEl.querySelector('section') || sectionEl.querySelector('nav') || sectionEl.querySelector('footer');
-      if (sectionContent) {
-        let styleAttr = '';
-        
-        if (bgColor) {
-          sectionEl.setAttribute('data-bg-color', bgColor);
-          styleAttr += `background-color: ${bgColor} !important; `;
-          sectionContent.className = sectionContent.className.replace(/bg-\[#[0-9a-fA-F]{6}\]/g, '');
-        }
-        
-        if (textColor) {
-          sectionEl.setAttribute('data-text-color', textColor);
-          styleAttr += `color: ${textColor} !important; `;
-        }
-        
-        if (accentColor) {
-          sectionEl.setAttribute('data-accent-color', accentColor);
-          // Apply accent color to template
-          const elementsWithAccent = sectionContent.querySelectorAll('[class*="{{accentColor}}"]');
-          elementsWithAccent.forEach(el => {
-            const classes = el.className.split(' ');
-            classes.forEach(cls => {
-              if (cls.includes('{{accentColor}}')) {
-                const newClass = cls.replace('{{accentColor}}', accentColor);
-                el.classList.remove(cls);
-                el.classList.add(newClass);
-              }
-            });
+      if (bgColor) {
+        sectionEl.setAttribute('data-bg-color', bgColor);
+        styleAttr += `background-color: ${bgColor} !important; `;
+        sectionContent.className = sectionContent.className.replace(/bg-\[#[0-9a-fA-F]{6}\]/g, '');
+      }
+      
+      if (textColor) {
+        sectionEl.setAttribute('data-text-color', textColor);
+        styleAttr += `color: ${textColor} !important; `;
+      }
+      
+      if (accentColor) {
+        sectionEl.setAttribute('data-accent-color', accentColor);
+        // Apply accent color to template
+        const elementsWithAccent = sectionContent.querySelectorAll('[class*="{{accentColor}}"]');
+        elementsWithAccent.forEach(el => {
+          const classes = el.className.split(' ');
+          classes.forEach(cls => {
+            if (cls.includes('{{accentColor}}')) {
+              const newClass = cls.replace('{{accentColor}}', accentColor);
+              el.classList.remove(cls);
+              el.classList.add(newClass);
+            }
           });
-        }
-        
-        if (styleAttr) {
-          sectionContent.setAttribute('style', styleAttr);
-        }
-        
-        if (spacing) {
-          sectionEl.setAttribute('data-spacing', spacing);
-          sectionContent.className = sectionContent.className.replace(/py-\d+/g, spacing);
-        }
-        
-        // Apply font styles
-        if (fontFamily) {
-          sectionEl.setAttribute('data-font-family', fontFamily);
-          sectionContent.className = sectionContent.className.replace(/font-(sans|serif|mono)/g, '');
-          sectionContent.classList.add(fontFamily);
-        }
-        
-        if (fontSize) {
-          sectionEl.setAttribute('data-font-size', fontSize);
-          sectionContent.className = sectionContent.className.replace(/text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl)/g, '');
-          sectionContent.classList.add(fontSize);
-        }
-        
-        if (fontWeight) {
-          sectionEl.setAttribute('data-font-weight', fontWeight);
-          sectionContent.className = sectionContent.className.replace(/font-(light|normal|medium|semibold|bold|extrabold)/g, '');
-          sectionContent.classList.add(fontWeight);
-        }
+        });
+      }
+      
+      if (styleAttr) {
+        sectionContent.setAttribute('style', styleAttr);
+      }
+      
+      if (spacing) {
+        sectionEl.setAttribute('data-spacing', spacing);
+        sectionContent.className = sectionContent.className.replace(/py-\d+/g, spacing);
+      }
+      
+      // Apply font styles
+      if (fontFamily) {
+        sectionEl.setAttribute('data-font-family', fontFamily);
+        sectionContent.className = sectionContent.className.replace(/font-(sans|serif|mono)/g, '');
+        sectionContent.classList.add(fontFamily);
+      }
+      
+      if (fontSize) {
+        sectionEl.setAttribute('data-font-size', fontSize);
+        sectionContent.className = sectionContent.className.replace(/text-(xs|sm|base|lg|xl|2xl|3xl|4xl|5xl)/g, '');
+        sectionContent.classList.add(fontSize);
+      }
+      
+      if (fontWeight) {
+        sectionEl.setAttribute('data-font-weight', fontWeight);
+        sectionContent.className = sectionContent.className.replace(/font-(light|normal|medium|semibold|bold|extrabold)/g, '');
+        sectionContent.classList.add(fontWeight);
+      }
+      
+      // Debug: Prüfe Icons
+      const icons = sectionContent.querySelectorAll('i[class*="fa-"]');
+      if (icons.length === 0) {
+        DEBUG.log(`    ⚠️ Keine Icons in Section gefunden!`, 'warning');
       }
     }
   });
+  
+  DEBUG.log(`  ✅ Alle Sections aktualisiert!`, 'success');
 }
 
 function resetGlobalStyles() {

@@ -296,8 +296,38 @@
       font-family: 'Montserrat', sans-serif !important;
     }
     
-    #website-canvas * {
+    /* Montserrat für Canvas-Elemente, ABER NICHT für Icons */
+    #website-canvas h1, 
+    #website-canvas h2, 
+    #website-canvas h3, 
+    #website-canvas h4, 
+    #website-canvas h5, 
+    #website-canvas h6, 
+    #website-canvas p, 
+    #website-canvas span:not([class*="fa-"]), 
+    #website-canvas div:not([class*="fa-"]), 
+    #website-canvas a:not([class*="fa-"]) > *:not(i),
+    #website-canvas button:not([class*="fa-"]) > *:not(i) {
       font-family: 'Montserrat', sans-serif !important;
+    }
+    
+    /* Font Awesome Icons im Canvas explizit schützen */
+    #website-canvas i[class*="fa-"],
+    #website-canvas .fas, 
+    #website-canvas .far, 
+    #website-canvas .fal, 
+    #website-canvas .fat, 
+    #website-canvas .fab,
+    #website-canvas .fa-solid, 
+    #website-canvas .fa-regular, 
+    #website-canvas .fa-light, 
+    #website-canvas .fa-thin, 
+    #website-canvas .fa-brands {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "Font Awesome 6 Brands", "FontAwesome" !important;
+      font-style: normal !important;
+      font-weight: 900 !important;
+      -webkit-font-smoothing: antialiased !important;
+      -moz-osx-font-smoothing: grayscale !important;
     }
     
     #website-canvas::-webkit-scrollbar {
@@ -417,6 +447,104 @@
   </style>
 </head>
 <body class="bg-gray-50">
+  
+  <!-- DEBUG CONSOLE -->
+  <!-- Debug Console - Hidden by default -->
+  <div id="debug-console" style="display: none;">
+    <div id="debug-output"></div>
+  </div>
+
+  <script>
+    // Save native console BEFORE any other script overwrites it
+    const nativeConsole = {
+      log: console.log.bind(console),
+      error: console.error.bind(console),
+      warn: console.warn.bind(console)
+    };
+    
+    // DEBUG Console System
+    const DEBUG = {
+      enabled: true,
+      
+      log: function(message, type = 'info') {
+        if (!this.enabled) return;
+        
+        const timestamp = new Date().toLocaleTimeString();
+        const output = document.getElementById('debug-output');
+        
+        if (output) {
+          const colors = {
+            info: '#00ffff',
+            success: '#00ff00',
+            warning: '#ffff00',
+            error: '#ff0000'
+          };
+          
+          const entry = document.createElement('div');
+          entry.style.color = colors[type] || '#0ff';
+          entry.style.marginBottom = '5px';
+          entry.innerHTML = `[${timestamp}] ${message}`;
+          output.appendChild(entry);
+          
+          // Auto-scroll
+          output.scrollTop = output.scrollHeight;
+          
+          // Limit to 50 entries
+          if (output.children.length > 50) {
+            output.removeChild(output.firstChild);
+          }
+        }
+        
+        // Use native console instead of possibly overwritten one
+        nativeConsole.log(`[BUILDER] ${message}`);
+      }
+    };
+    
+    // Toggle Debug Console with Ctrl+Shift+D
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.shiftKey && e.key === 'D') {
+        const debugConsole = document.getElementById('debug-console');
+        debugConsole.style.display = debugConsole.style.display === 'none' ? 'block' : 'none';
+      }
+    });
+    
+    DEBUG.log('🚀 Builder Debug System initialisiert', 'success');
+    
+    // Icon-Check beim Laden
+    setTimeout(() => {
+      const allIcons = document.querySelectorAll('i[class*="fa-"]');
+      DEBUG.log(`🎨 ${allIcons.length} Icons auf der Seite gefunden`, allIcons.length > 0 ? 'success' : 'error');
+      
+      // Prüfe Font Awesome Stylesheet
+      const faStylesheet = Array.from(document.styleSheets).find(sheet => 
+        sheet.href && sheet.href.includes('fontawesome')
+      );
+      
+      if (faStylesheet) {
+        DEBUG.log(`✅ Font Awesome Stylesheet geladen von: ${faStylesheet.href}`, 'success');
+      } else {
+        DEBUG.log(`❌ Font Awesome Stylesheet NICHT gefunden!`, 'error');
+      }
+      
+      // Prüfe ein Test-Icon
+      if (allIcons.length > 0) {
+        const testIcon = allIcons[0];
+        const computedStyle = window.getComputedStyle(testIcon);
+        DEBUG.log(`📊 Test-Icon Computed Styles:`, 'info');
+        DEBUG.log(`  font-family: ${computedStyle.fontFamily}`, 'info');
+        DEBUG.log(`  font-weight: ${computedStyle.fontWeight}`, 'info');
+        DEBUG.log(`  content: ${computedStyle.content}`, 'info');
+        
+        if (computedStyle.fontFamily.includes('Font Awesome')) {
+          DEBUG.log(`  ✅ Font Awesome font-family korrekt!`, 'success');
+        } else {
+          DEBUG.log(`  ❌ Font Awesome font-family FALSCH!`, 'error');
+        }
+      }
+    }, 1000);
+  </script>
+
+  <!-- Header -->
   
   <!-- Builder Header -->
   <header class="builder-header">
