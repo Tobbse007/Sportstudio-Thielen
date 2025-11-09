@@ -1,0 +1,11 @@
+{
+  "id": "navbar-thielen-autohide",
+  "name": "Navbar - Thielen Auto-Hide",
+  "category": "navigation",
+  "icon": "fa-solid fa-bars",
+  "description": "Moderne Navbar - versteckt beim Runterscrollen, erscheint beim Hochscrollen. Logo links, Menü Mitte, CTA rechts. Mobile optimiert.",
+  "editable": {
+    "backgroundColor": true,
+    "menuItems": true
+  }
+}

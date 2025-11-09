@@ -1,0 +1,49 @@
+<nav class="fixed top-0 left-0 right-0 z-50 transition-all duration-300 navbar-transparent" id="main-navbar">
+  <div class="{{containerWidth}} mx-auto px-6">
+    <div class="flex items-center justify-between h-20">
+      <!-- Logo Links -->
+      <div class="flex items-center gap-3">
+        <i class="fa-solid fa-dumbbell text-3xl text-[{{primaryColor}}]"></i>
+        <div class="leading-tight">
+          <div class="text-xl {{fontWeight}} text-[{{textColor}}]" contenteditable="true">Sportstudio Thielen</div>
+          <div class="text-xs text-[{{textColor}}]/70" contenteditable="true">Oldschool Gym</div>
+        </div>
+      </div>
+      
+      <!-- Menü Mitte (Desktop) -->
+      <div class="hidden lg:flex items-center gap-8">
+        <a href="#home" class="nav-link text-[{{textColor}}] hover:text-[{{primaryColor}}] transition-colors {{fontSize}} font-medium" contenteditable="true">Startseite</a>
+        <a href="#about" class="nav-link text-[{{textColor}}] hover:text-[{{primaryColor}}] transition-colors {{fontSize}} font-medium" contenteditable="true">Über uns</a>
+        <a href="#preise" class="nav-link text-[{{textColor}}] hover:text-[{{primaryColor}}] transition-colors {{fontSize}} font-medium" contenteditable="true">Preise</a>
+        <a href="#blog" class="nav-link text-[{{textColor}}] hover:text-[{{primaryColor}}] transition-colors {{fontSize}} font-medium" contenteditable="true">Blog</a>
+        <a href="#kontakt" class="nav-link text-[{{textColor}}] hover:text-[{{primaryColor}}] transition-colors {{fontSize}} font-medium" contenteditable="true">Kontakt</a>
+      </div>
+      
+      <!-- CTA Button Rechts -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="#mitglied-werden" class="px-6 py-3 bg-[{{primaryColor}}] hover:bg-[{{accentColor}}] text-white rounded-lg {{fontWeight}} transition-all hover:scale-105 shadow-lg" contenteditable="true">
+          Jetzt Mitglied werden
+        </a>
+      </div>
+      
+      <!-- Mobile Menu Button -->
+      <button class="lg:hidden text-[{{textColor}}] text-2xl" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden lg:hidden bg-white shadow-xl">
+    <div class="{{containerWidth}} mx-auto px-6 py-4 space-y-3">
+      <a href="#home" class="block py-2 text-gray-800 hover:text-[{{primaryColor}}] transition-colors font-medium" contenteditable="true">Startseite</a>
+      <a href="#about" class="block py-2 text-gray-800 hover:text-[{{primaryColor}}] transition-colors font-medium" contenteditable="true">Über uns</a>
+      <a href="#preise" class="block py-2 text-gray-800 hover:text-[{{primaryColor}}] transition-colors font-medium" contenteditable="true">Preise</a>
+      <a href="#blog" class="block py-2 text-gray-800 hover:text-[{{primaryColor}}] transition-colors font-medium" contenteditable="true">Blog</a>
+      <a href="#kontakt" class="block py-2 text-gray-800 hover:text-[{{primaryColor}}] transition-colors font-medium" contenteditable="true">Kontakt</a>
+      <a href="#mitglied-werden" class="block mt-4 px-6 py-3 bg-[{{primaryColor}}] text-white rounded-lg font-bold text-center" contenteditable="true">
+        Jetzt Mitglied werden
+      </a>
+    </div>
+  </div>
+</nav>

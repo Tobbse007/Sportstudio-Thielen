@@ -1,0 +1,7 @@
+{
+  "id": "services-gym-cards",
+  "name": "Services - Gym Features",
+  "category": "features",
+  "icon": "fa-solid fa-star",
+  "description": "6 Service-Cards mit Pop-ups für Details (Duschen, 24/7, Getränke, etc.)"
+}

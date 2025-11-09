@@ -1,0 +1,7 @@
+{
+  "id": "pricing-table",
+  "name": "Preistabelle",
+  "category": "pricing",
+  "icon": "fa-solid fa-coins",
+  "description": "3-spaltige Preistabelle mit Featured-Angebot"
+}

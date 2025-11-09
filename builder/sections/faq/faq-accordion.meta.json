@@ -1,0 +1,7 @@
+{
+  "id": "faq-accordion",
+  "name": "FAQ - Accordion",
+  "category": "faq",
+  "icon": "fa-solid fa-circle-question",
+  "description": "Häufig gestellte Fragen im Accordion-Format"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "navbar-fixed",
+  "name": "Navigation - Fixed Top",
+  "category": "navigation",
+  "icon": "fa-solid fa-compass",
+  "description": "Fixierte Navigation oben mit Logo und Links"
+}

@@ -1,0 +1,7 @@
+{
+  "id": "pricing-gym-cards",
+  "name": "Preise - Mitgliedschaften",
+  "category": "pricing",
+  "icon": "fa-solid fa-euro-sign",
+  "description": "Preiskarten für Sportstudio (Schüler, Normal, Paare, Tageskarten)"
+}

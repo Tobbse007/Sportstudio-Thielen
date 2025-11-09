@@ -1,0 +1,242 @@
+<section class="{{spacing}} bg-[{{backgroundColor}}] fade-in animate-on-scroll animated">
+  <div class="{{containerWidth}} mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-4 fade-in animate-on-scroll animated" style="transition-delay: 0.1s;">
+        <i class="fa-solid fa-users mr-2"></i>
+        <span class="{{fontWeight}} text-sm">Unser Team</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-4 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.2s;" contenteditable="true">
+        Deine Trainer
+      </h2>
+      <p class="text-lg text-[{{textColor}}]/60 max-w-2xl mx-auto {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 1.1s;" contenteditable="true">
+        Professionell, motivierend und immer für dich da – buche jetzt dein Personal Training
+      </p>
+    </div>
+    
+    <!-- Trainer Cards -->
+    <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+      <!-- Trainer 1: Max -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 2.1s;" onclick="openTrainerModal('max')">
+        <div class="relative h-80 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&h=800&fit=crop" 
+               alt="Trainer Max" 
+               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent fade-in animate-on-scroll animated" style="transition-delay: 2.2s;"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <h3 class="text-2xl {{fontWeight}} mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.30000000000000004s;" contenteditable="true">Max Mustermann</h3>
+            <p class="text-sm text-white/90 mb-3 fade-in animate-on-scroll animated" style="transition-delay: 1.2000000000000002s;" contenteditable="true">Personal Trainer & Ernährungsberater</p>
+            <div class="flex items-center gap-2 text-sm">
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <span class="ml-1">5.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] rounded-full text-xs {{fontWeight}}" contenteditable="true">Krafttraining</span>
+            <span class="px-3 py-1 bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] rounded-full text-xs {{fontWeight}}" contenteditable="true">Ernährung</span>
+            <span class="px-3 py-1 bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] rounded-full text-xs {{fontWeight}}" contenteditable="true">Muskelaufbau</span>
+          </div>
+          <p class="text-[{{textColor}}]/70 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.3s;" contenteditable="true">
+            Über 10 Jahre Erfahrung im Kraftsport. Spezialisiert auf Muskelaufbau und individualisierte Trainingspläne.
+          </p>
+          <button class="w-full py-3 bg-[{{primaryColor}}] hover:bg-[{{accentColor}}] text-white rounded-lg {{fontWeight}} transition-all flex items-center justify-center gap-2 fade-in animate-on-scroll animated" style="transition-delay: 1.8s;">
+            <i class="fa-solid fa-calendar-plus"></i>
+            Personal Training buchen
+          </button>
+        </div>
+      </div>
+      
+      <!-- Trainer 2: Sarah -->
+      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 2.3000000000000003s;" onclick="openTrainerModal('sarah')">
+        <div class="relative h-80 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1594381898411-846e7d193883?w=600&h=800&fit=crop" 
+               alt="Trainerin Sarah" 
+               class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent fade-in animate-on-scroll animated" style="transition-delay: 2.4000000000000004s;"></div>
+          <div class="absolute bottom-0 left-0 right-0 p-6 text-white">
+            <h3 class="text-2xl {{fontWeight}} mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.4s;" contenteditable="true">Sarah Schmidt</h3>
+            <p class="text-sm text-white/90 mb-3 fade-in animate-on-scroll animated" style="transition-delay: 1.4000000000000001s;" contenteditable="true">Fitness Coach & Yoga-Trainerin</p>
+            <div class="flex items-center gap-2 text-sm">
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <i class="fa-solid fa-star text-yellow-400"></i>
+              <span class="ml-1">5.0</span>
+            </div>
+          </div>
+        </div>
+        <div class="p-6">
+          <div class="flex flex-wrap gap-2 mb-4">
+            <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs {{fontWeight}}" contenteditable="true">Functional Training</span>
+            <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs {{fontWeight}}" contenteditable="true">Yoga</span>
+            <span class="px-3 py-1 bg-pink-100 text-pink-600 rounded-full text-xs {{fontWeight}}" contenteditable="true">Mobility</span>
+          </div>
+          <p class="text-[{{textColor}}]/70 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.5s;" contenteditable="true">
+            Zertifizierte Fitness- und Yoga-Trainerin. Fokus auf ganzheitliche Fitness und Beweglichkeit.
+          </p>
+          <button class="w-full py-3 bg-pink-600 hover:bg-pink-700 text-white rounded-lg {{fontWeight}} transition-all flex items-center justify-center gap-2 fade-in animate-on-scroll animated" style="transition-delay: 1.9000000000000001s;">
+            <i class="fa-solid fa-calendar-plus"></i>
+            Personal Training buchen
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Trainer Modal -->
+  <div id="trainer-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4" onclick="closeTrainerModal()">
+    <div class="bg-white rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-y-auto" onclick="event.stopPropagation()">
+      <div id="trainer-modal-content">
+        <!-- Content wird per JavaScript eingefügt -->
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const trainerData = {
+      'max': {
+        name: 'Max Mustermann',
+        role: 'Personal Trainer & Ernährungsberater',
+        image: 'https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=800&h=600&fit=crop',
+        experience: '10+ Jahre Erfahrung',
+        specialties: ['Krafttraining', 'Ernährungsberatung', 'Muskelaufbau', 'Wettkampfvorbereitung'],
+        bio: 'Max ist seit über 10 Jahren im Kraftsport aktiv und hat zahlreiche Athleten erfolgreich betreut. Seine Expertise liegt in der Entwicklung individueller Trainingspläne und der ganzheitlichen Ernährungsberatung. Ob Anfänger oder Fortgeschrittener – Max holt dich da ab, wo du stehst.',
+        certifications: ['Lizenzierter Personal Trainer (A-Lizenz)', 'Ernährungsberater (IHK)', 'Functional Training Specialist'],
+        pricing: {
+          single: '60€ / Stunde',
+          package5: '275€ / 5er-Block',
+          package10: '500€ / 10er-Block'
+        }
+      },
+      'sarah': {
+        name: 'Sarah Schmidt',
+        role: 'Fitness Coach & Yoga-Trainerin',
+        image: 'https://images.unsplash.com/photo-1594381898411-846e7d193883?w=800&h=600&fit=crop',
+        experience: '8+ Jahre Erfahrung',
+        specialties: ['Functional Training', 'Yoga & Pilates', 'Mobility Training', 'Rehabilitation'],
+        bio: 'Sarah verbindet klassisches Fitness-Training mit Yoga und Mobility-Übungen zu einem ganzheitlichen Trainingskonzept. Ihr Fokus liegt auf funktioneller Fitness, die dich im Alltag stärker und beweglicher macht. Besonders geeignet für Einsteiger und Wiedereinsteiger.',
+        certifications: ['Fitness Trainerin (B-Lizenz)', 'Yoga Alliance RYT 200', 'Mobility & Flexibility Specialist'],
+        pricing: {
+          single: '55€ / Stunde',
+          package5: '250€ / 5er-Block',
+          package10: '450€ / 10er-Block'
+        }
+      }
+    };
+    
+    function openTrainerModal(trainerId) {
+      const modal = document.getElementById('trainer-modal');
+      const content = document.getElementById('trainer-modal-content');
+      const trainer = trainerData[trainerId];
+      
+      content.innerHTML = `
+        <button class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors z-10 fade-in animate-on-scroll animated" style="transition-delay: 2.0s;" onclick="closeTrainerModal()">
+          <i class="fa-solid fa-times text-gray-600"></i>
+        </button>
+        
+        <div class="grid md:grid-cols-2">
+          <!-- Bild Links -->
+          <div class="relative h-96 md:h-full">
+            <img src="${trainer.image}" alt="${trainer.name}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent fade-in animate-on-scroll animated" style="transition-delay: 2.5s;"></div>
+          </div>
+          
+          <!-- Info Rechts -->
+          <div class="p-8">
+            <h3 class="text-3xl font-bold text-gray-900 mb-2 fade-in animate-on-scroll animated" style="transition-delay: 0.5s;">${trainer.name}</h3>
+            <p class="text-lg text-gray-600 mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.6s;">${trainer.role}</p>
+            
+            <div class="flex items-center gap-2 mb-6">
+              <i class="fa-solid fa-award text-blue-600"></i>
+              <span class="text-sm font-medium text-gray-700">${trainer.experience}</span>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide fade-in animate-on-scroll animated" style="transition-delay: 0.6000000000000001s;">Spezialisierungen</h4>
+              <div class="flex flex-wrap gap-2">
+                ${trainer.specialties.map(s => `<span class="px-3 py-1 bg-blue-50 text-blue-600 rounded-full text-xs font-medium">${s}</span>`).join('')}
+              </div>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide fade-in animate-on-scroll animated" style="transition-delay: 0.7000000000000001s;">Über ${trainer.name.split(' ')[0]}</h4>
+              <p class="text-gray-600 text-sm leading-relaxed fade-in animate-on-scroll animated" style="transition-delay: 1.7000000000000002s;">${trainer.bio}</p>
+            </div>
+            
+            <div class="mb-6">
+              <h4 class="text-sm font-bold text-gray-900 mb-2 uppercase tracking-wide fade-in animate-on-scroll animated" style="transition-delay: 0.8s;">Zertifizierungen</h4>
+              <ul class="space-y-1">
+                ${trainer.certifications.map(c => `
+                  <li class="flex items-center gap-2 text-sm text-gray-600">
+                    <i class="fa-solid fa-check text-green-600"></i>
+                    ${c}
+                  </li>
+                `).join('')}
+              </ul>
+            </div>
+            
+            <div class="bg-gray-50 rounded-lg p-4 mb-6 fade-in animate-on-scroll animated" style="transition-delay: 2.6s;">
+              <h4 class="text-sm font-bold text-gray-900 mb-3 uppercase tracking-wide fade-in animate-on-scroll animated" style="transition-delay: 0.9s;">Preise Personal Training</h4>
+              <div class="space-y-2 text-sm">
+                <div class="flex justify-between">
+                  <span class="text-gray-600">Einzelstunde</span>
+                  <span class="font-bold text-gray-900">${trainer.pricing.single}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">5er-Block</span>
+                  <span class="font-bold text-gray-900">${trainer.pricing.package5}</span>
+                </div>
+                <div class="flex justify-between">
+                  <span class="text-gray-600">10er-Block</span>
+                  <span class="font-bold text-green-600">${trainer.pricing.package10} 💪</span>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Kontaktformular -->
+            <div class="border-t-2 border-gray-200 pt-6 fade-in animate-on-scroll animated" style="transition-delay: 2.7s;">
+              <h4 class="text-lg font-bold text-gray-900 mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.0s;">Jetzt Termin anfragen</h4>
+              <form class="space-y-3" onsubmit="handleTrainerContact(event, '${trainerId}')">
+                <input type="text" required placeholder="Dein Name" 
+                       class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-sm">
+                <input type="email" required placeholder="E-Mail Adresse" 
+                       class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-sm">
+                <input type="tel" placeholder="Telefon (optional)" 
+                       class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none text-sm">
+                <textarea required rows="3" placeholder="Deine Nachricht / Wunschtermin" 
+                          class="w-full px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none resize-none text-sm"></textarea>
+                <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-bold transition-all">
+                  <i class="fa-solid fa-paper-plane mr-2"></i>
+                  Anfrage senden
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      `;
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    
+    function closeTrainerModal() {
+      const modal = document.getElementById('trainer-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+    
+    function handleTrainerContact(e, trainerId) {
+      e.preventDefault();
+      alert(`Danke für deine Anfrage! ${trainerData[trainerId].name.split(' ')[0]} wird sich so schnell wie möglich bei dir melden.`);
+      closeTrainerModal();
+      e.target.reset();
+    }
+  </script>
+</section>

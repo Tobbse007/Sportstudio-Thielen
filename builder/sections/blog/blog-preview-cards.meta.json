@@ -1,0 +1,7 @@
+{
+  "id": "blog-preview-cards",
+  "name": "Blog Preview - Artikel Karten",
+  "category": "blog",
+  "icon": "fa-solid fa-newspaper",
+  "description": "2-3 Blog-Artikel als Karten mit 'Zum Blog' Button"
+}

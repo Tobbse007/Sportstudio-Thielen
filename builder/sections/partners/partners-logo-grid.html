@@ -1,0 +1,122 @@
+<section class="{{spacing}} bg-[{{backgroundColor}}] fade-in animate-on-scroll animated">
+  <div class="{{containerWidth}} mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-4 fade-in animate-on-scroll animated" style="transition-delay: 0.1s;">
+        <i class="fa-solid fa-handshake mr-2"></i>
+        <span class="{{fontWeight}} text-sm">Kooperationen</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-4 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.2s;" contenteditable="true">
+        Unsere Partner
+      </h2>
+      <p class="text-lg text-[{{textColor}}]/60 max-w-2xl mx-auto {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 0.4s;" contenteditable="true">
+        Gemeinsam stark – vertrauensvolle Partnerschaften für dein Training
+      </p>
+    </div>
+    
+    <!-- Partner Logos Grid -->
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 items-center">
+      <!-- Partner 1 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.fitnessfirst.de')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 1.4000000000000001s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/MyProtein_Logo.svg/2560px-MyProtein_Logo.svg.png" 
+               alt="MyProtein" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 0.5s;" contenteditable="true">Sporternährung</p>
+      </div>
+      
+      <!-- Partner 2 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.adidas.de')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 1.5s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Adidas_Logo.svg/2560px-Adidas_Logo.svg.png" 
+               alt="Adidas" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 0.6000000000000001s;" contenteditable="true">Sportbekleidung</p>
+      </div>
+      
+      <!-- Partner 3 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.nike.com')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 1.6s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a6/Logo_NIKE.svg/2560px-Logo_NIKE.svg.png" 
+               alt="Nike" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 0.7000000000000001s;" contenteditable="true">Performance Wear</p>
+      </div>
+      
+      <!-- Partner 4 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.reebok.com')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 1.7000000000000002s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ed/Reebok_2019_logo.svg/2560px-Reebok_2019_logo.svg.png" 
+               alt="Reebok" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 0.8s;" contenteditable="true">Training Equipment</p>
+      </div>
+      
+      <!-- Partner 5 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.optimumnutrition.com')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 1.8s;">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/0/02/Optimum_Nutrition_logo.svg/2560px-Optimum_Nutrition_logo.svg.png" 
+               alt="Optimum Nutrition" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 0.9s;" contenteditable="true">Premium Supplements</p>
+      </div>
+      
+      <!-- Partner 6 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.under-armour.de')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 1.9000000000000001s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Under_Armour_Logo.svg/2560px-Under_Armour_Logo.svg.png" 
+               alt="Under Armour" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 1.0s;" contenteditable="true">High-Tech Apparel</p>
+      </div>
+      
+      <!-- Partner 7 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.decathlon.de')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 2.0s;">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Logo_Decathlon.svg/2560px-Logo_Decathlon.svg.png" 
+               alt="Decathlon" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 1.1s;" contenteditable="true">Sportausrüstung</p>
+      </div>
+      
+      <!-- Partner 8 -->
+      <div class="partner-logo-wrapper group cursor-pointer" onclick="openPartnerLink('https://www.gymshark.com')">
+        <div class="bg-white rounded-2xl p-8 shadow-md hover:shadow-2xl transition-all flex items-center justify-center h-32 grayscale hover:grayscale-0 fade-in animate-on-scroll animated" style="transition-delay: 2.1s;">
+          <img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/34/Gymshark_logo.svg/2560px-Gymshark_logo.svg.png" 
+               alt="Gymshark" 
+               class="max-w-full max-h-full object-contain opacity-60 group-hover:opacity-100 transition-opacity">
+        </div>
+        <p class="text-center mt-3 text-sm text-[{{textColor}}]/60 {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 1.2000000000000002s;" contenteditable="true">Gym Fashion</p>
+      </div>
+    </div>
+    
+    <!-- Partner CTA -->
+    <div class="mt-16 text-center">
+      <div class="bg-gradient-to-r from-[{{primaryColor}}]/5 to-[{{accentColor}}]/5 rounded-2xl p-8 fade-in animate-on-scroll animated" style="transition-delay: 2.2s;">
+        <h3 class="text-2xl {{fontWeight}} text-[{{textColor}}] mb-3 fade-in animate-on-scroll animated" style="transition-delay: 0.30000000000000004s;" contenteditable="true">
+          Interesse an einer Partnerschaft?
+        </h3>
+        <p class="text-[{{textColor}}]/70 mb-6 {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 1.3s;" contenteditable="true">
+          Wir sind immer auf der Suche nach starken Partnern aus Sport, Fitness und Ernährung.
+        </p>
+        <a href="#kontakt" class="inline-flex items-center gap-2 px-6 py-3 bg-[{{primaryColor}}] hover:bg-[{{accentColor}}] text-white rounded-lg {{fontWeight}} transition-all shadow-lg hover:shadow-xl">
+          <i class="fa-solid fa-envelope"></i>
+          Jetzt Kontakt aufnehmen
+        </a>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function openPartnerLink(url) {
+      window.open(url, '_blank');
+    }
+  </script>
+</section>

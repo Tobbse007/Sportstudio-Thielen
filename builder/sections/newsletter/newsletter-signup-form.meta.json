@@ -1,0 +1,7 @@
+{
+  "id": "newsletter-signup-form",
+  "name": "Newsletter - Signup Form",
+  "category": "newsletter",
+  "icon": "fa-solid fa-envelope",
+  "description": "E-Mail Newsletter Anmeldung mit Datenschutz"
+}

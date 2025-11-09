@@ -4,17 +4,17 @@
 
 // Globale Variablen
 let globalStyles = {
-  primaryColor: '#ff6900',  // FitX Orange
-  secondaryColor: '#1a1a1a',  // FitX Dunkelgrau/Schwarz
-  accentColor: '#ff8533',  // Helles Orange
-  textColor: '#1a1a1a',
-  backgroundColor: '#ffffff',
-  borderRadius: '8px',
-  spacing: 'py-16',
-  fontFamily: 'font-sans',  // Montserrat via Tailwind
+  primaryColor: '#2563eb',      // Kräftiges Blau (Sportstudio Thielen)
+  secondaryColor: '#1e293b',    // Dunkelgrau/Schwarz
+  accentColor: '#3b82f6',       // Helleres Blau
+  textColor: '#1a1a1a',         // Schwarz/Dunkelgrau
+  backgroundColor: '#ffffff',   // Weiß
+  borderRadius: '4px',          // Eckige Elemente
+  spacing: 'py-20',             // Viel Weißraum
+  fontFamily: 'font-sans',      // Montserrat via Tailwind
   fontSize: 'text-base',
-  fontWeight: 'font-semibold',  // FitX nutzt bold fonts
-  containerWidth: 'max-w-7xl'
+  fontWeight: 'font-semibold',  // Modern mit Kanten
+  containerWidth: 'max-w-7xl'   // Breite Container wie FitX
 };
 
 let currentSectionId = null;
@@ -67,9 +67,9 @@ const stylePresets = {
     name: 'Dark Mode',
     icon: 'fa-moon',
     styles: {
-      primaryColor: '#8b5cf6',
+      primaryColor: '#3b82f6',      // Blau statt Lila
       secondaryColor: '#0f172a',
-      accentColor: '#f59e0b',
+      accentColor: '#60a5fa',       // Helles Blau statt Orange
       textColor: '#f8fafc',
       backgroundColor: '#1e293b',
       borderRadius: '12px',
@@ -112,6 +112,23 @@ const stylePresets = {
       fontSize: 'text-lg',
       fontWeight: 'font-bold',
       containerWidth: 'max-w-7xl'
+    }
+  },
+  thielen: {
+    name: 'Sportstudio Thielen',
+    icon: 'fa-dumbbell',
+    styles: {
+      primaryColor: '#2563eb',      // Kräftiges Blau (wie FitX Orange)
+      secondaryColor: '#1e293b',    // Dunkelgrau/Schwarz
+      accentColor: '#3b82f6',       // Helleres Blau für Hover
+      textColor: '#1a1a1a',         // Schwarz/Dunkelgrau
+      backgroundColor: '#ffffff',   // Weiß
+      borderRadius: '4px',          // Eckige Elemente (nicht rund!)
+      spacing: 'py-20',             // Viel Weißraum
+      fontFamily: 'font-sans',      // Montserrat via Tailwind
+      fontSize: 'text-base',        
+      fontWeight: 'font-semibold',  // Modern mit Kanten
+      containerWidth: 'max-w-7xl'   // Wie FitX - breite Container
     }
   }
 };
@@ -235,64 +252,123 @@ function inputModalCancel() {
 
 // Section Library aus JSON-Dateien laden
 async function loadSectionLibrary() {
-  // Alle verfügbaren Sections
+  // Alle verfügbaren Sections (ohne Extension - lädt .meta.json + .html)
   const sections = [
     // Navigation
-    'sections/navigation/navbar-fixed.json',
-    'sections/navigation/navbar-transparent.json',
-    'sections/navigation/navbar-fitx-style.json',
+    'sections/navigation/navbar-fixed',
+    'sections/navigation/navbar-transparent',
+    'sections/navigation/navbar-fitx-style',
+    'sections/navigation/navbar-thielen-autohide',
     // Hero
-    'sections/hero/hero-fullscreen.json',
-    'sections/hero/hero-split.json',
-    'sections/hero/hero-gym-background.json',
+    'sections/hero/hero-fullscreen',
+    'sections/hero/hero-split',
+    'sections/hero/hero-gym-background',
     // Features
-    'sections/features/features-grid.json',
-    'sections/features/features-steps-3.json',
-    'sections/features/features-benefits-list.json',
-    'sections/features/about-gym-story.json',
-    'sections/features/services-gym-cards.json',
+    'sections/features/features-grid',
+    'sections/features/features-steps-3',
+    'sections/features/features-benefits-list',
+    'sections/features/about-gym-story',
+    'sections/features/services-gym-cards',
     // Stats
-    'sections/stats/stats-4-grid.json',
+    'sections/stats/stats-4-grid',
     // Gallery
-    'sections/gallery/gallery-grid-6.json',
-    'sections/gallery/gallery-masonry.json',
+    'sections/gallery/gallery-grid-6',
+    'sections/gallery/gallery-masonry',
     // Blog
-    'sections/blog/blog-preview-cards.json',
+    'sections/blog/blog-preview-cards',
     // Team
-    'sections/team/team-grid-3.json',
-    'sections/team/team-trainers-popup.json',
+    'sections/team/team-grid-3',
+    'sections/team/team-trainers-popup',
     // Partners
-    'sections/partners/partners-logo-grid.json',
+    'sections/partners/partners-logo-grid',
     // Testimonials
-    'sections/testimonials/testimonials-cards.json',
-    'sections/testimonials/testimonials-slider.json',
-    'sections/testimonials/testimonials-gym-members.json',
+    'sections/testimonials/testimonials-cards',
+    'sections/testimonials/testimonials-slider',
+    'sections/testimonials/testimonials-gym-members',
     // CTA
-    'sections/cta/cta-center.json',
+    'sections/cta/cta-center',
     // Pricing
-    'sections/pricing/pricing-table.json',
-    'sections/pricing/pricing-gym-cards.json',
+    'sections/pricing/pricing-table',
+    'sections/pricing/pricing-gym-cards',
     // FAQ
-    'sections/faq/faq-accordion.json',
+    'sections/faq/faq-accordion',
     // Newsletter
-    'sections/newsletter/newsletter-signup-form.json',
+    'sections/newsletter/newsletter-signup-form',
     // Contact
-    'sections/contact/contact-form.json',
-    'sections/contact/contact-form-maps.json',
+    'sections/contact/contact-form',
+    'sections/contact/contact-form-maps',
     // Footer
-    'sections/footer/footer-full.json',
-    'sections/footer/footer-gym-complete.json'
+    'sections/footer/footer-full',
+    'sections/footer/footer-gym-complete'
   ];
   
-  for (const path of sections) {
+  console.log('%c📦 Loading Section Library...', 'color: #3b82f6; font-weight: bold; font-size: 14px;');
+  console.log(`   Total: ${sections.length} sections to load\n`);
+  
+  for (const basePath of sections) {
+    const sectionName = basePath.split('/').pop();
+    
     try {
-      const response = await fetch(path);
-      const section = await response.json();
-      sectionLibrary.push(section);
+      // Cache-Buster hinzufügen um immer aktuelle Version zu laden
+      const cacheBuster = `?v=${Date.now()}`;
+      
+      // Lade Metadaten
+      console.log(`%c📄 ${sectionName}`, 'color: #6366f1; font-weight: bold;');
+      const metaResponse = await fetch(`${basePath}.meta.json${cacheBuster}`);
+      const meta = await metaResponse.json();
+      console.log(`   ✅ META: ${basePath}.meta.json loaded`);
+      
+      // Lade HTML-Template
+      const htmlResponse = await fetch(`${basePath}.html${cacheBuster}`);
+      const template = await htmlResponse.text();
+      console.log(`   ✅ HTML: ${basePath}.html loaded (${template.length} chars)`);
+      console.log(`   %c🎯 SOURCE: HTML + Meta-JSON (NEW SYSTEM)`, 'color: #10b981; font-weight: bold;');
+      console.log('');
+      
+      // Kombiniere Metadaten + Template
+      sectionLibrary.push({
+        ...meta,
+        template: template,
+        _loadedFrom: 'HTML+META'  // Debug-Flag
+      });
     } catch (error) {
-      console.error(`Fehler beim Laden von ${path}:`, error);
+      // Fallback: Versuche alte JSON zu laden
+      console.log(`   %c⚠️ HTML/Meta failed, trying old JSON...`, 'color: #f59e0b;');
+      try {
+        const cacheBuster = `?v=${Date.now()}`;
+        const jsonResponse = await fetch(`${basePath}.json${cacheBuster}`);
+        const section = await jsonResponse.json();
+        console.log(`   %c❌ LOADED FROM OLD JSON (${basePath}.json)`, 'color: #ef4444; font-weight: bold;');
+        console.log(`   ⚠️ You should migrate this section to HTML+Meta format!`);
+        console.log('');
+        sectionLibrary.push({
+          ...section,
+          _loadedFrom: 'JSON-OLD'  // Debug-Flag
+        });
+      } catch (jsonError) {
+        console.error(`   ❌ ERROR: Could not load ${basePath}:`, error);
+        console.log('');
+      }
     }
   }
+  
+  console.log('%c✅ Section Library Loaded!', 'color: #10b981; font-weight: bold; font-size: 14px;');
+  console.log(`   Total loaded: ${sectionLibrary.length} sections`);
+  
+  // Statistik: Wie viele von HTML vs JSON?
+  const htmlCount = sectionLibrary.filter(s => s._loadedFrom === 'HTML+META').length;
+  const jsonCount = sectionLibrary.filter(s => s._loadedFrom === 'JSON-OLD').length;
+  console.log(`\n%c📊 STATISTICS:`, 'color: #3b82f6; font-weight: bold;');
+  console.log(`   🆕 HTML+Meta: ${htmlCount} sections (${Math.round(htmlCount/sectionLibrary.length*100)}%)`);
+  console.log(`   🗂️ Old JSON:  ${jsonCount} sections (${Math.round(jsonCount/sectionLibrary.length*100)}%)`);
+  
+  if (jsonCount > 0) {
+    console.log(`\n%c⚠️ WARNING: ${jsonCount} sections still using old JSON format!`, 'color: #ef4444; font-weight: bold;');
+    console.log('   Run migration script to convert them.');
+  } else {
+    console.log(`\n%c🎉 PERFECT! All sections using new HTML+Meta format!`, 'color: #10b981; font-weight: bold;');
+  }
+  console.log('\n' + '='.repeat(60) + '\n');
   
   // Sortiere nach Kategorie
   sectionLibrary.sort((a, b) => {
@@ -714,6 +790,13 @@ function addSection(sectionId) {
     return;
   }
   
+  // Zeige Source an
+  const source = section._loadedFrom || 'UNKNOWN';
+  const sourceColor = source === 'HTML+META' ? 'color: #10b981; font-weight: bold;' : 'color: #ef4444; font-weight: bold;';
+  console.log(`%c🔧 Adding: ${section.name}`, 'font-weight: bold;');
+  console.log(`   Source: %c${source}`, sourceColor);
+  console.log(`   Template size: ${section.template.length} chars`);
+  
   DEBUG.log(`  ✓ Section gefunden: ${section.name}`, 'success');
   
   const canvas = document.getElementById('canvas-container');
@@ -844,17 +927,47 @@ function editSection(id) {
   const content = document.getElementById('section-editor-content');
   const section = document.getElementById(id);
   
+  // Check if section is a navbar
+  const sectionType = section.getAttribute('data-section-type') || '';
+  const isNavbar = sectionType.includes('navbar');
+  
   // Get current section data attributes
-  const bgColor = section.getAttribute('data-bg-color') || '';
-  const textColor = section.getAttribute('data-text-color') || '';
-  const accentColor = section.getAttribute('data-accent-color') || '';
+  const bgColor = section.getAttribute('data-bg-color') || globalStyles.backgroundColor;
+  const textColor = section.getAttribute('data-text-color') || globalStyles.textColor;
+  const accentColor = section.getAttribute('data-accent-color') || globalStyles.primaryColor;
   const spacing = section.getAttribute('data-spacing') || globalStyles.spacing;
   const fontFamily = section.getAttribute('data-font-family') || '';
   const fontSize = section.getAttribute('data-font-size') || '';
   const fontWeight = section.getAttribute('data-font-weight') || '';
   
+  let navbarMenuEditor = '';
+  if (isNavbar) {
+    navbarMenuEditor = `
+      <div class="bg-blue-50 border-2 border-blue-200 p-4 rounded-lg mb-6">
+        <h4 class="font-bold text-blue-900 mb-3 flex items-center gap-2">
+          <i class="fas fa-bars"></i>
+          Navigation Menü bearbeiten
+        </h4>
+        <p class="text-sm text-blue-800 mb-4">
+          <i class="fas fa-info-circle mr-2"></i>
+          Klicke direkt auf die Menüpunkte im Canvas um Text zu ändern. Zum Hinzufügen/Löschen nutze die Buttons unten.
+        </p>
+        <div class="flex gap-2">
+          <button onclick="addNavMenuItem('${id}')" class="flex-1 px-4 py-2 bg-green-600 hover:bg-green-700 text-white rounded-lg transition-colors text-sm font-medium">
+            <i class="fas fa-plus mr-2"></i>Menüpunkt hinzufügen
+          </button>
+          <button onclick="removeLastNavMenuItem('${id}')" class="flex-1 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors text-sm font-medium">
+            <i class="fas fa-minus mr-2"></i>Letzten entfernen
+          </button>
+        </div>
+      </div>
+    `;
+  }
+  
   content.innerHTML = `
     <div class="space-y-6">
+      ${navbarMenuEditor}
+      
       <div class="bg-blue-50 border-2 border-blue-200 p-4 rounded-lg">
         <p class="text-sm text-blue-900">
           <i class="fas fa-info-circle mr-2"></i>
@@ -1048,19 +1161,81 @@ function saveSection() {
   // Apply styles with !important to override global styles
   const sectionContent = section.querySelector('section') || section.querySelector('nav') || section.querySelector('footer');
   if (sectionContent) {
-    // Create or update inline styles
-    let styleAttr = '';
-    
+    // Apply background color
     if (bgColor) {
+      let styleAttr = sectionContent.getAttribute('style') || '';
+      styleAttr = styleAttr.replace(/background-color:[^;]+;?/g, '');
       styleAttr += `background-color: ${bgColor} !important; `;
-      sectionContent.className = sectionContent.className.replace(/bg-\[#[0-9a-fA-F]{6}\]/g, '');
-    }
-    if (textColor) {
-      styleAttr += `color: ${textColor} !important; `;
+      sectionContent.setAttribute('style', styleAttr.trim());
+      
+      // Update data-bg-color attribute for navbar
+      if (sectionContent.hasAttribute('data-bg-color')) {
+        sectionContent.setAttribute('data-bg-color', bgColor);
+      }
     }
     
-    if (styleAttr) {
-      sectionContent.setAttribute('style', styleAttr);
+    // Apply text color to all text elements (aber NICHT zu Links/Buttons die hover haben)
+    if (textColor) {
+      // Logo text
+      sectionContent.querySelectorAll('div[contenteditable="true"]:not(a):not(button)').forEach(el => {
+        if (!el.closest('a') && !el.closest('button')) {
+          el.style.setProperty('color', textColor, 'important');
+        }
+      });
+      
+      // Paragraphs, headings
+      sectionContent.querySelectorAll('h1, h2, h3, h4, h5, h6, p').forEach(el => {
+        if (!el.closest('a') && !el.closest('button')) {
+          el.style.setProperty('color', textColor, 'important');
+        }
+      });
+      
+      // Navbar Logo text (spezielle Behandlung)
+      sectionContent.querySelectorAll('.text-xl, .text-xs').forEach(el => {
+        if (el.closest('.flex.items-center.gap-3') && !el.closest('a')) {
+          el.style.setProperty('color', textColor, 'important');
+        }
+      });
+    }
+    
+    // Apply accent/primary color to interactive elements (mit CSS-Variablen für Hover)
+    if (accentColor) {
+      // Erstelle ein <style> Tag für diese Section mit Hover-Support
+      let styleTag = section.querySelector('style.section-custom-styles');
+      if (!styleTag) {
+        styleTag = document.createElement('style');
+        styleTag.className = 'section-custom-styles';
+        section.appendChild(styleTag);
+      }
+      
+      const sectionId = section.id;
+      styleTag.textContent = `
+        /* Custom colors for section ${sectionId} with hover support */
+        #${sectionId} nav a.nav-link {
+          color: ${textColor || globalStyles.textColor} !important;
+        }
+        #${sectionId} nav a.nav-link:hover {
+          color: ${accentColor} !important;
+          background-color: ${accentColor}15 !important;
+        }
+        #${sectionId} button:not([onclick*="close"]):not([onclick*="toggle"]) {
+          background-color: ${accentColor} !important;
+          border-color: ${accentColor} !important;
+        }
+        #${sectionId} button:not([onclick*="close"]):not([onclick*="toggle"]):hover {
+          background-color: ${accentColor}dd !important;
+          transform: scale(1.05);
+        }
+        #${sectionId} i.fa-dumbbell {
+          color: ${accentColor} !important;
+        }
+        #${sectionId} a[href*="#mitglied"] {
+          background-color: ${accentColor} !important;
+        }
+        #${sectionId} a[href*="#mitglied"]:hover {
+          background-color: ${accentColor}dd !important;
+        }
+      `;
     }
     
     if (spacing) {
@@ -1082,26 +1257,11 @@ function saveSection() {
       sectionContent.className = sectionContent.className.replace(/font-(light|normal|medium|semibold|bold|extrabold)/g, '');
       sectionContent.classList.add(fontWeight);
     }
-    
-    // Apply accent color to all elements with {{accentColor}}
-    if (accentColor) {
-      const elementsWithAccent = sectionContent.querySelectorAll('[class*="[{{accentColor}}]"]');
-      elementsWithAccent.forEach(el => {
-        const classes = el.className.split(' ');
-        classes.forEach(cls => {
-          if (cls.includes('{{accentColor}}')) {
-            const newClass = cls.replace('{{accentColor}}', accentColor);
-            el.classList.remove(cls);
-            el.classList.add(newClass);
-          }
-        });
-      });
-    }
   }
   
-  showAlert('✅ Gespeichert', 'Section-Styles wurden erfolgreich angewendet und überschreiben die globalen Einstellungen.');
+  showAlert('✅ Gespeichert', 'Section-Styles wurden erfolgreich angewendet.');
   closeEditor();
-  refreshAllSections();
+  // NICHT refreshAllSections() aufrufen - würde unsere Inline-Styles überschreiben!
 }
 
 function resetSectionStyles() {
@@ -1408,11 +1568,15 @@ function previewWebsite() {
   const canvas = document.getElementById('canvas-container');
   const sections = canvas.querySelectorAll('.section-item');
   
-  let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"><style>*{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}</style></head><body>`;
+  let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><style>*{font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}</style></head><body>`;
   
   sections.forEach(section => {
     const content = section.cloneNode(true);
     content.querySelector('.section-controls')?.remove();
+    // Remove contenteditable for preview
+    content.querySelectorAll('[contenteditable]').forEach(el => {
+      el.removeAttribute('contenteditable');
+    });
     html += content.innerHTML;
   });
   
@@ -1432,33 +1596,112 @@ async function exportHTML() {
     return;
   }
   
-  // HTML generieren
+  // Zeige Export-Dialog
+  showExportDialog(sections);
+}
+
+function showExportDialog(sections) {
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+  modal.innerHTML = `
+    <div class="bg-white rounded-lg p-8 max-w-lg w-full m-4">
+      <h3 class="text-2xl font-bold mb-4">
+        <i class="fas fa-download mr-2 text-blue-600"></i>
+        Website exportieren
+      </h3>
+      
+      <div class="space-y-4 mb-6">
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Ordnername (in /export/)
+          </label>
+          <input type="text" id="export-folder" value="meine-website" 
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                 placeholder="z.B. sportstudio-thielen">
+        </div>
+        
+        <div>
+          <label class="block text-sm font-semibold text-gray-700 mb-2">
+            Dateiname
+          </label>
+          <input type="text" id="export-filename" value="index" 
+                 class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                 placeholder="z.B. index oder home">
+          <p class="text-xs text-gray-500 mt-1">Wird zu: [dateiname].html</p>
+        </div>
+      </div>
+      
+      <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6 text-sm text-blue-800">
+        <p class="font-semibold mb-2">📁 Wird exportiert nach:</p>
+        <code class="block bg-white px-3 py-2 rounded mt-2">
+          /builder/export/<span id="preview-folder">meine-website</span>/<span id="preview-filename">index</span>.html
+        </code>
+      </div>
+      
+      <div class="flex gap-3">
+        <button onclick="this.closest('.fixed').remove()" 
+                class="flex-1 px-6 py-3 bg-gray-200 text-gray-800 rounded-lg font-semibold hover:bg-gray-300 transition">
+          Abbrechen
+        </button>
+        <button onclick="executeExport()" 
+                class="flex-1 px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition">
+          <i class="fas fa-download mr-2"></i>
+          Exportieren
+        </button>
+      </div>
+    </div>
+  `;
+  
+  document.body.appendChild(modal);
+  
+  // Live preview update
+  const folderInput = modal.querySelector('#export-folder');
+  const filenameInput = modal.querySelector('#export-filename');
+  const previewFolder = modal.querySelector('#preview-folder');
+  const previewFilename = modal.querySelector('#preview-filename');
+  
+  folderInput.addEventListener('input', () => {
+    previewFolder.textContent = folderInput.value || 'meine-website';
+  });
+  
+  filenameInput.addEventListener('input', () => {
+    previewFilename.textContent = filenameInput.value || 'index';
+  });
+}
+
+function executeExport() {
+  const folderName = document.getElementById('export-folder').value || 'meine-website';
+  const fileName = document.getElementById('export-filename').value || 'index';
+  
+  const canvas = document.getElementById('canvas-container');
+  const sections = canvas.querySelectorAll('.section-item');
+  
+  // HTML generieren mit Animationen
   let html = `<!DOCTYPE html>
 <html lang="de">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Meine Website</title>
-  <meta name="description" content="Erstellt mit Website Builder">
+  <title>Sportstudio Thielen - Dein Oldschool Gym</title>
+  <meta name="description" content="Familiäres Fitnessstudio mit Oldschool-Atmosphäre">
   
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
   
-  <!-- Google Fonts -->
+  <!-- Google Fonts - Montserrat -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-  
-  <!-- Custom CSS -->
-  <link rel="stylesheet" href="assets/css/custom.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
   
   <style>
     * {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     }
+    
+    /* Global Styles */
     :root {
       --primary-color: ${globalStyles.primaryColor};
       --secondary-color: ${globalStyles.secondaryColor};
@@ -1466,55 +1709,177 @@ async function exportHTML() {
       --text-color: ${globalStyles.textColor};
       --background-color: ${globalStyles.backgroundColor};
     }
+    
+    /* Smooth Scroll */
+    html {
+      scroll-behavior: smooth;
+    }
+    
+    /* Font Awesome Icons Schutz */
+    i[class*="fa-"] {
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "Font Awesome 6 Brands", "FontAwesome" !important;
+      font-style: normal !important;
+      font-weight: 900 !important;
+    }
+    
+    /* Animation Classes */
+    .animate-on-scroll {
+      opacity: 0;
+      transition: all 0.6s ease-out;
+    }
+    
+    .animate-on-scroll.animated {
+      opacity: 1;
+    }
+    
+    /* Fade In */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    .fade-in.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Slide Up */
+    .slide-up {
+      opacity: 0;
+      transform: translateY(50px);
+    }
+    
+    .slide-up.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* Slide Left */
+    .slide-left {
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    
+    .slide-left.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Slide Right */
+    .slide-right {
+      opacity: 0;
+      transform: translateX(-50px);
+    }
+    
+    .slide-right.animated {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    
+    /* Scale */
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+    
+    .scale-in.animated {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    /* Bounce */
+    @keyframes bounce-in {
+      0% { opacity: 0; transform: scale(0.3); }
+      50% { opacity: 1; transform: scale(1.05); }
+      70% { transform: scale(0.9); }
+      100% { transform: scale(1); }
+    }
+    
+    .bounce-in.animated {
+      animation: bounce-in 0.6s ease-out;
+    }
   </style>
 </head>
 <body>
 `;
   
-  sections.forEach(section => {
+  sections.forEach((section, index) => {
     const content = section.cloneNode(true);
     content.querySelector('.section-controls')?.remove();
+    
     // Remove contenteditable
     content.querySelectorAll('[contenteditable]').forEach(el => {
       el.removeAttribute('contenteditable');
     });
+    
+    // Animation-Klassen sind jetzt in den Section-Templates definiert
+    // Keine nachträgliche Änderung mehr nötig
+    
     html += content.innerHTML + '\n';
   });
   
   html += `
-  <!-- Scroll to Top Button -->
-  <button id="scroll-top" class="hidden fixed bottom-8 right-8 bg-[${globalStyles.primaryColor}] text-white w-12 h-12 rounded-full shadow-lg hover:scale-110 transition z-50">
-    <i class="fas fa-arrow-up"></i>
-  </button>
-  
-  <!-- Custom JavaScript -->
-  <script src="assets/js/scripts.js"></script>
+  <!-- Animation Script -->
+  <script>
+    // Intersection Observer für Scroll-Animationen
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animated');
+        }
+      });
+    }, observerOptions);
+    
+    // Beobachte alle Elemente mit animate-on-scroll
+    document.addEventListener('DOMContentLoaded', () => {
+      const animatedElements = document.querySelectorAll('.animate-on-scroll');
+      animatedElements.forEach(el => observer.observe(el));
+    });
+  </script>
 </body>
 </html>`;
   
-  // Generiere Config
-  const projectInfo = {
-    generatedAt: new Date().toISOString(),
-    globalStyles: globalStyles,
-    sectionsCount: sections.length,
-    sections: Array.from(sections).map(s => ({
-      type: s.getAttribute('data-section-type'),
-      id: s.id
-    }))
-  };
+  // 1. Download HTML (Backup)
+  downloadFile(`${fileName}.html`, html);
   
-  // Download HTML
-  downloadFile('index.html', html);
+  // 2. Speichere auf Server
+  saveToServer(html, folderName, fileName);
   
-  // Download Config
-  downloadFile('website-config.json', JSON.stringify(projectInfo, null, 2));
-  
-  // Zeige Success Message
-  showSuccessModal();
+  // Schließe Dialog
+  document.querySelector('.fixed.inset-0')?.remove();
+}
+
+async function saveToServer(html, folderName, fileName) {
+  try {
+    const response = await fetch('/builder/save-export.php', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ html, folderName, fileName })
+    });
+    
+    const result = await response.json();
+    
+    if (result.success) {
+      showSuccessModal(folderName, fileName, result.path);
+    } else {
+      console.error('Server-Fehler:', result.error);
+      showSuccessModal(folderName, fileName, null);
+    }
+  } catch (error) {
+    console.error('Fehler beim Speichern:', error);
+    showSuccessModal(folderName, fileName, null);
+  }
 }
 
 function downloadFile(filename, content) {
-  const blob = new Blob([content], { type: 'text/html' });
+  const blob = new Blob([content], { type: 'text/html; charset=utf-8' });
   const url = URL.createObjectURL(blob);
   const a = document.createElement('a');
   a.href = url;
@@ -1523,34 +1888,45 @@ function downloadFile(filename, content) {
   URL.revokeObjectURL(url);
 }
 
-function showSuccessModal() {
+function showSuccessModal(folderName, fileName, serverPath) {
   const modal = document.createElement('div');
   modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50';
+  
+  const serverSaved = serverPath ? `
+    <div class="text-left bg-green-50 border border-green-200 p-4 rounded-lg mb-4">
+      <p class="font-bold mb-2 text-green-900">✅ Auf Server gespeichert:</p>
+      <code class="block bg-white px-3 py-2 rounded text-sm font-mono">${serverPath}</code>
+    </div>
+  ` : '';
+  
   modal.innerHTML = `
     <div class="bg-white rounded-lg p-8 max-w-2xl text-center m-4">
       <div class="text-6xl mb-4">✅</div>
-      <h3 class="text-2xl font-bold mb-4">Website erfolgreich erstellt!</h3>
+      <h3 class="text-2xl font-bold mb-4">Website erfolgreich exportiert!</h3>
+      
+      ${serverSaved}
+      
       <div class="text-left bg-gray-50 p-4 rounded-lg mb-6">
         <p class="font-bold mb-2">📦 Heruntergeladen:</p>
         <ul class="text-sm space-y-1 text-gray-700">
-          <li>✓ <strong>index.html</strong> - Deine komplette Website</li>
-          <li>✓ <strong>website-config.json</strong> - Konfiguration</li>
+          <li>✓ <strong>${fileName}.html</strong> - Komplette Website mit Animationen</li>
         </ul>
       </div>
+      
       <div class="text-left bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6">
-        <p class="font-bold mb-2 text-blue-900">📋 Nächste Schritte:</p>
-        <ol class="text-sm space-y-2 text-blue-800 list-decimal list-inside">
-          <li>Export-Ordner erstellen: <code class="bg-white px-2 py-1 rounded">./builder/export-website.sh meine-website</code></li>
-          <li>Die heruntergeladene <code>index.html</code> in den Export-Ordner verschieben</li>
-          <li>Bilder in <code>assets/images/</code> ablegen</li>
-          <li>Website auf Server hochladen oder lokal öffnen!</li>
-        </ol>
+        <p class="font-bold mb-2 text-blue-900">🎬 Enthaltene Features:</p>
+        <ul class="text-sm space-y-1 text-blue-800">
+          <li>✓ Scroll-Animationen (Fade-in, Slide-up, etc.)</li>
+          <li>✓ Hover-Effekte</li>
+          <li>✓ Responsive Design</li>
+          <li>✓ Font Awesome Icons</li>
+          <li>✓ Montserrat Font</li>
+        </ul>
       </div>
-      <p class="text-sm text-gray-600 mb-4">
-        📖 Detaillierte Anleitung: <code>builder/BUILDER_DOKUMENTATION.md</code>
-      </p>
+      
       <button onclick="this.parentElement.parentElement.remove()" 
               class="px-6 py-3 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 transition">
+        <i class="fas fa-check mr-2"></i>
         Verstanden!
       </button>
     </div>
@@ -1559,5 +1935,99 @@ function showSuccessModal() {
   
   setTimeout(() => {
     modal.remove();
-  }, 15000);
+  }, 20000);
+}
+
+// ============================================
+// NAVBAR MENU EDITOR FUNCTIONS
+// ============================================
+
+function addNavMenuItem(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  
+  const nav = section.querySelector('nav');
+  if (!nav) return;
+  
+  // Find desktop menu container
+  const desktopMenu = nav.querySelector('.hidden.lg\\:flex.items-center');
+  if (desktopMenu) {
+    const newLink = document.createElement('a');
+    newLink.href = '#neue-seite';
+    newLink.className = 'nav-link px-4 py-2 text-[' + globalStyles.textColor + '] hover:text-[' + globalStyles.primaryColor + '] hover:bg-[' + globalStyles.primaryColor + ']/5 rounded-lg transition-all duration-200 ' + globalStyles.fontSize + ' font-medium';
+    newLink.contentEditable = 'true';
+    newLink.textContent = 'Neue Seite';
+    
+    // Insert before CTA button container
+    const ctaContainer = desktopMenu.nextElementSibling;
+    if (ctaContainer) {
+      desktopMenu.appendChild(newLink);
+    } else {
+      desktopMenu.appendChild(newLink);
+    }
+  }
+  
+  // Find mobile menu container
+  const mobileMenu = nav.querySelector('[id$="mobile-menu"]');
+  if (mobileMenu) {
+    const mobileMenuPanel = mobileMenu.querySelector('[id$="mobile-menu-panel"]');
+    if (mobileMenuPanel) {
+      const menuLinks = mobileMenuPanel.querySelector('.p-6.space-y-2');
+      if (menuLinks) {
+        const newMobileLink = document.createElement('a');
+        newMobileLink.href = '#neue-seite';
+        newMobileLink.className = 'flex items-center gap-3 py-3 px-4 text-gray-800 hover:text-[' + globalStyles.primaryColor + '] hover:bg-[' + globalStyles.primaryColor + ']/5 rounded-lg transition-all font-medium';
+        newMobileLink.contentEditable = 'true';
+        newMobileLink.onclick = function() { toggleThielenMobileMenu(); };
+        newMobileLink.innerHTML = '<i class="fa-solid fa-circle w-5"></i><span>Neue Seite</span>';
+        
+        // Insert before CTA button
+        const ctaButton = menuLinks.querySelector('a[href="#mitglied-werden"]');
+        if (ctaButton) {
+          menuLinks.insertBefore(newMobileLink, ctaButton);
+        } else {
+          menuLinks.appendChild(newMobileLink);
+        }
+      }
+    }
+  }
+  
+  showAlert('✅ Menüpunkt hinzugefügt', 'Klicke auf "Neue Seite" um den Text zu ändern.');
+}
+
+function removeLastNavMenuItem(sectionId) {
+  const section = document.getElementById(sectionId);
+  if (!section) return;
+  
+  const nav = section.querySelector('nav');
+  if (!nav) return;
+  
+  // Remove from desktop menu
+  const desktopMenu = nav.querySelector('.hidden.lg\\:flex.items-center');
+  if (desktopMenu) {
+    const links = desktopMenu.querySelectorAll('.nav-link');
+    if (links.length > 1) {
+      links[links.length - 1].remove();
+    } else {
+      showAlert('⚠️ Mindestens ein Menüpunkt', 'Du musst mindestens einen Menüpunkt behalten.');
+      return;
+    }
+  }
+  
+  // Remove from mobile menu
+  const mobileMenu = nav.querySelector('[id$="mobile-menu"]');
+  if (mobileMenu) {
+    const mobileMenuPanel = mobileMenu.querySelector('[id$="mobile-menu-panel"]');
+    if (mobileMenuPanel) {
+      const menuLinks = mobileMenuPanel.querySelector('.p-6.space-y-2');
+      if (menuLinks) {
+        const links = menuLinks.querySelectorAll('a:not([href="#mitglied-werden"])');
+        if (links.length > 1) {
+          links[links.length - 1].remove();
+        }
+      }
+    }
+  }
+  
+  showAlert('✅ Menüpunkt entfernt', 'Der letzte Menüpunkt wurde gelöscht.');
 }

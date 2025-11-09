@@ -1,0 +1,8 @@
+{
+  "id": "gallery-grid-6",
+  "name": "Gallery - 6 Bilder Grid",
+  "category": "gallery",
+  "icon": "fa-solid fa-images",
+  "description": "6 Bilder in 2x3 Grid mit Hover-Effekt",
+  "flippable": false
+}

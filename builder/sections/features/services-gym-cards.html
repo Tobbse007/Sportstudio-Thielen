@@ -1,0 +1,179 @@
+<section class="{{spacing}} bg-gradient-to-br from-gray-50 to-white fade-in animate-on-scroll animated">
+  <div class="{{containerWidth}} mx-auto px-6">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-4 fade-in animate-on-scroll animated" style="transition-delay: 0.1s;">
+        <i class="fa-solid fa-star mr-2"></i>
+        <span class="{{fontWeight}} text-sm">Unsere Services</span>
+      </div>
+      <h2 class="text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-4 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.2s;" contenteditable="true">
+        Alles drin zu einem fairen Preis
+      </h2>
+      <p class="text-lg text-[{{textColor}}]/60 max-w-2xl mx-auto {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 1.0s;" contenteditable="true">
+        Mehr als nur ein Fitnessstudio – ein Ort, an dem du dich wohlfühlst
+      </p>
+    </div>
+    
+    <!-- Service Cards Grid -->
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- Card 1: Moderne Duschen -->
+      <div class="service-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 1.9000000000000001s;" onclick="openServiceModal('duschen')">
+        <div class="w-16 h-16 bg-gradient-to-br from-[{{primaryColor}}] to-[{{accentColor}}] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform fade-in animate-on-scroll animated" style="transition-delay: 2.0s;">
+          <i class="fa-solid fa-shower text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl {{fontWeight}} mb-2 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.30000000000000004s;" contenteditable="true">Moderne Duschen</h3>
+        <p class="text-[{{textColor}}]/60 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.1s;" contenteditable="true">Immer sauber, immer verfügbar</p>
+        <span class="text-[{{primaryColor}}] {{fontSize}} {{fontWeight}} flex items-center gap-2">
+          Mehr erfahren <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </span>
+      </div>
+      
+      <!-- Card 2: 24/7 Training -->
+      <div class="service-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 2.1s;" onclick="openServiceModal('247')">
+        <div class="w-16 h-16 bg-gradient-to-br from-[{{primaryColor}}] to-[{{accentColor}}] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform fade-in animate-on-scroll animated" style="transition-delay: 2.2s;">
+          <i class="fa-solid fa-clock text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl {{fontWeight}} mb-2 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.4s;" contenteditable="true">Trainiere jederzeit</h3>
+        <p class="text-[{{textColor}}]/60 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.2000000000000002s;" contenteditable="true">6-22 Uhr täglich, so lange du willst</p>
+        <span class="text-[{{primaryColor}}] {{fontSize}} {{fontWeight}} flex items-center gap-2">
+          Mehr erfahren <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </span>
+      </div>
+      
+      <!-- Card 3: Getränke & Snacks -->
+      <div class="service-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 2.3000000000000003s;" onclick="openServiceModal('getraenke')">
+        <div class="w-16 h-16 bg-gradient-to-br from-[{{primaryColor}}] to-[{{accentColor}}] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform fade-in animate-on-scroll animated" style="transition-delay: 2.4000000000000004s;">
+          <i class="fa-solid fa-droplet text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl {{fontWeight}} mb-2 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.5s;" contenteditable="true">Erfrischende Getränke</h3>
+        <p class="text-[{{textColor}}]/60 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.3s;" contenteditable="true">Kostenlos Wasser auffüllen</p>
+        <span class="text-[{{primaryColor}}] {{fontSize}} {{fontWeight}} flex items-center gap-2">
+          Mehr erfahren <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </span>
+      </div>
+      
+      <!-- Card 4: Zugang per Transponder -->
+      <div class="service-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 2.5s;" onclick="openServiceModal('zugang')">
+        <div class="w-16 h-16 bg-gradient-to-br from-[{{primaryColor}}] to-[{{accentColor}}] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform fade-in animate-on-scroll animated" style="transition-delay: 2.6s;">
+          <i class="fa-solid fa-key text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl {{fontWeight}} mb-2 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.6000000000000001s;" contenteditable="true">Chip-Zugang</h3>
+        <p class="text-[{{textColor}}]/60 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.4000000000000001s;" contenteditable="true">Persönlicher Transponder-Chip</p>
+        <span class="text-[{{primaryColor}}] {{fontSize}} {{fontWeight}} flex items-center gap-2">
+          Mehr erfahren <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </span>
+      </div>
+      
+      <!-- Card 5: Oldschool Ausstattung -->
+      <div class="service-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 2.7s;" onclick="openServiceModal('oldschool')">
+        <div class="w-16 h-16 bg-gradient-to-br from-[{{primaryColor}}] to-[{{accentColor}}] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform fade-in animate-on-scroll animated" style="transition-delay: 2.8000000000000003s;">
+          <i class="fa-solid fa-dumbbell text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl {{fontWeight}} mb-2 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.7000000000000001s;" contenteditable="true">Oldschool-Ausstattung</h3>
+        <p class="text-[{{textColor}}]/60 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.5s;" contenteditable="true">Robuste Geräte, pure Power</p>
+        <span class="text-[{{primaryColor}}] {{fontSize}} {{fontWeight}} flex items-center gap-2">
+          Mehr erfahren <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </span>
+      </div>
+      
+      <!-- Card 6: Faire Preise -->
+      <div class="service-card bg-white p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all cursor-pointer group fade-in animate-on-scroll animated" style="transition-delay: 2.9000000000000004s;" onclick="openServiceModal('preise')">
+        <div class="w-16 h-16 bg-gradient-to-br from-[{{primaryColor}}] to-[{{accentColor}}] rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform fade-in animate-on-scroll animated" style="transition-delay: 3.0s;">
+          <i class="fa-solid fa-tag text-white text-2xl"></i>
+        </div>
+        <h3 class="text-xl {{fontWeight}} mb-2 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.8s;" contenteditable="true">Fair & Flexibel</h3>
+        <p class="text-[{{textColor}}]/60 {{fontSize}} mb-4 fade-in animate-on-scroll animated" style="transition-delay: 1.6s;" contenteditable="true">Monatliche Mitgliedschaften</p>
+        <span class="text-[{{primaryColor}}] {{fontSize}} {{fontWeight}} flex items-center gap-2">
+          Mehr erfahren <i class="fa-solid fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+        </span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Service Modal -->
+  <div id="service-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm hidden items-center justify-center z-50 p-4" onclick="closeServiceModal()">
+    <div class="bg-white rounded-2xl max-w-2xl w-full p-8 relative" onclick="event.stopPropagation()">
+      <button class="absolute top-4 right-4 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors fade-in animate-on-scroll animated" style="transition-delay: 1.8s;" onclick="closeServiceModal()">
+        <i class="fa-solid fa-times text-gray-600"></i>
+      </button>
+      
+      <div id="modal-content">
+        <!-- Content wird per JavaScript eingefügt -->
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    const serviceContent = {
+      'duschen': {
+        icon: 'fa-shower',
+        title: 'Moderne Duschen & Umkleiden',
+        text: 'Unsere Duschen und Umkleiden sind immer sauber und gepflegt. Mit ausreichend Schließfächern und viel Platz für deine Sachen. Nach dem Training kannst du dich in Ruhe frisch machen – keine Hektik, keine Warteschlangen.',
+        features: ['Große Schließfächer', 'Immer sauber', 'Viel Platz', 'Moderne Ausstattung']
+      },
+      '247': {
+        icon: 'fa-clock',
+        title: 'Trainiere jederzeit',
+        text: 'Von 6 bis 22 Uhr täglich hast du Zugang zu unserem Studio. Mit deinem persönlichen Chip kommst du rein, wann immer du willst. Trainiere so lange du möchtest – ohne Zeitdruck, ohne Stress.',
+        features: ['6-22 Uhr täglich', 'Chip-Zugang', 'So lange wie du willst', 'Keine festen Trainingszeiten']
+      },
+      'getraenke': {
+        icon: 'fa-droplet',
+        title: 'Erfrischende Getränke & Snacks',
+        text: 'Während deines Trainings kannst du dich jederzeit erfrischen. Kostenloses Wasser zum Auffüllen, Getränke und kleine Snacks für die Pause zwischen den Trainingseinheiten.',
+        features: ['Kostenloses Wasser', 'Getränke verfügbar', 'Snacks für Zwischendurch', 'Pausenbereich']
+      },
+      'zugang': {
+        icon: 'fa-key',
+        title: 'Zugang per Transponder-Chip',
+        text: 'Mit deinem persönlichen Transponder-Chip hast du 24/7 Zugang zum Studio. Einfach Chip ans Lesegerät halten und schon bist du drin. Kein Schlüssel, kein Code – einfach und sicher.',
+        features: ['Persönlicher Chip', 'Einfacher Zugang', 'Sicher & zuverlässig', 'Bei Verlust ersetzbar']
+      },
+      'oldschool': {
+        icon: 'fa-dumbbell',
+        title: 'Oldschool-Ausstattung',
+        text: 'Bei uns findest du robuste, funktionale Geräte – kein Schnickschnack, sondern pure Power. Langhantelstangen, Freihanteln, klassische Kraftstationen und alles, was du für ein authentisches Training brauchst.',
+        features: ['Robuste Geräte', 'Freihanteln', 'Kraftstationen', 'Authentisches Training']
+      },
+      'preise': {
+        icon: 'fa-tag',
+        title: 'Fair & Flexible Preise',
+        text: 'Unsere Preise sind transparent und fair. Monatliche Mitgliedschaften ohne versteckte Kosten. Schüler, Studenten, Familien – wir haben für jeden das passende Angebot.',
+        features: ['Ab 25€ pro Monat', 'Keine versteckten Kosten', 'Familienrabatte', 'Flexible Laufzeiten']
+      }
+    };
+    
+    function openServiceModal(service) {
+      const modal = document.getElementById('service-modal');
+      const content = document.getElementById('modal-content');
+      const data = serviceContent[service];
+      
+      content.innerHTML = `
+        <div class="text-center mb-6">
+          <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4 fade-in animate-on-scroll animated" style="transition-delay: 3.1s;">
+            <i class="fa-solid ${data.icon} text-white text-3xl"></i>
+          </div>
+          <h3 class="text-3xl font-bold text-gray-900 mb-4 fade-in animate-on-scroll animated" style="transition-delay: 0.9s;">${data.title}</h3>
+          <p class="text-gray-600 text-lg leading-relaxed fade-in animate-on-scroll animated" style="transition-delay: 1.7000000000000002s;">${data.text}</p>
+        </div>
+        <div class="grid grid-cols-2 gap-4 mt-6">
+          ${data.features.map(f => `
+            <div class="flex items-center gap-2 bg-gray-50 p-3 rounded-lg fade-in animate-on-scroll animated" style="transition-delay: 3.2s;">
+              <i class="fa-solid fa-check text-green-600"></i>
+              <span class="text-sm text-gray-700">${f}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+    
+    function closeServiceModal() {
+      const modal = document.getElementById('service-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+  </script>
+</section>

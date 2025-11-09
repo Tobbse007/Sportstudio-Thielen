@@ -36,86 +36,12 @@
   <!-- Font Awesome Icons - JSDelivr CDN (no CORS issues) -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
   
-  <!-- Font Awesome Fehleranalyse -->
+  <!-- Font Awesome Check -->
   <script>
-    console.log('🔍 Font Awesome Fehleranalyse gestartet...');
-    
-    window.addEventListener('load', () => {
-      console.log('📄 Seite vollständig geladen');
-      
-      setTimeout(() => {
-        // 1. Prüfe ob Link-Tag vorhanden ist
-        const faLink = document.querySelector('link[href*="fontawesome"]');
-        if (faLink) {
-          console.log('✅ Font Awesome Link-Tag gefunden:', faLink.href);
-        } else {
-          console.error('❌ Font Awesome Link-Tag NICHT gefunden!');
-        }
-        
-        // 2. Prüfe alle geladenen Stylesheets
-        console.log('📋 Geladene Stylesheets:', document.styleSheets.length);
-        let faStylesheet = null;
-        for (let i = 0; i < document.styleSheets.length; i++) {
-          try {
-            const sheet = document.styleSheets[i];
-            if (sheet.href && sheet.href.includes('fontawesome')) {
-              faStylesheet = sheet;
-              console.log('✅ Font Awesome Stylesheet gefunden:', sheet.href);
-              console.log('   - Regeln:', sheet.cssRules ? sheet.cssRules.length : 'KEIN ZUGRIFF');
-            }
-          } catch(e) {
-            console.warn('⚠️ Kann Stylesheet nicht zugreifen:', e.message);
-          }
-        }
-        
-        if (!faStylesheet) {
-          console.error('❌ Font Awesome Stylesheet NICHT in styleSheets gefunden!');
-        }
-        
-        // 3. Erstelle Test-Icon und prüfe Styles
-        const testIcon = document.createElement('i');
-        testIcon.className = 'fas fa-eye';
-        testIcon.style.position = 'absolute';
-        testIcon.style.left = '-9999px';
-        document.body.appendChild(testIcon);
-        
-        console.log('🧪 Test-Icon erstellt mit Klassen:', testIcon.className);
-        
-        setTimeout(() => {
-          const computed = window.getComputedStyle(testIcon);
-          const fontFamily = computed.getPropertyValue('font-family');
-          const fontWeight = computed.getPropertyValue('font-weight');
-          const content = computed.getPropertyValue('content');
-          
-          console.log('📊 Test-Icon Computed Styles:');
-          console.log('   - font-family:', fontFamily);
-          console.log('   - font-weight:', fontWeight);
-          console.log('   - content:', content);
-          
-          if (fontFamily.includes('Font Awesome') || fontFamily.includes('FontAwesome')) {
-            console.log('✅ Font Awesome ERFOLGREICH GELADEN! 🎉');
-          } else {
-            console.error('❌ Font Awesome NICHT geladen!');
-            console.error('   Erwartete font-family: "Font Awesome 6 Free"');
-            console.error('   Gefundene font-family:', fontFamily);
-          }
-          
-          // 4. Liste Icons auf
-          const allIcons = document.querySelectorAll('i[class*="fa-"]');
-          console.log('🔢 Gefundene Icons auf der Seite:', allIcons.length);
-          
-          document.body.removeChild(testIcon);
-        }, 200);
-        
-      }, 500);
-    });
-    
-    // Netzwerk-Fehler überwachen
-    window.addEventListener('error', (e) => {
-      if (e.target.tagName === 'LINK' && e.target.href.includes('fontawesome')) {
-        console.error('❌ NETZWERK-FEHLER beim Laden von Font Awesome CSS:', e.target.href);
-      }
-    }, true);
+    setTimeout(() => {
+      const faLink = document.querySelector('link[href*="fontawesome"]');
+      if (!faLink) console.warn('⚠️ Font Awesome nicht gefunden');
+    }, 1000);
   </script>
   
   <style>
@@ -294,6 +220,15 @@
       min-height: calc(100vh - 64px);
       overflow-y: auto;
       font-family: 'Montserrat', sans-serif !important;
+      padding-top: 100px; /* Space für fixed navbar */
+    }
+    
+    /* Fixed navbars im Canvas nicht fixed machen */
+    #website-canvas nav[class*="fixed"] {
+      position: relative !important;
+      top: auto !important;
+      left: auto !important;
+      right: auto !important;
     }
     
     /* Montserrat für Canvas-Elemente, ABER NICHT für Icons */
@@ -634,6 +569,11 @@
             </h3>
             
             <div class="grid grid-cols-2 gap-2 mb-3">
+              <button onclick="loadPreset('thielen')" class="preset-btn bg-gradient-to-br from-blue-600 to-slate-800 hover:from-blue-700 hover:to-slate-900 border-2 border-blue-400 rounded-lg p-3 transition-all text-white">
+                <i class="fas fa-dumbbell text-blue-200 mb-1"></i>
+                <div class="text-xs font-bold">Sportstudio Thielen 💪</div>
+              </button>
+              
               <button onclick="loadPreset('fitx')" class="preset-btn bg-gradient-to-br from-orange-500 to-black hover:from-orange-600 hover:to-gray-900 border-2 border-orange-400 rounded-lg p-3 transition-all text-white">
                 <i class="fas fa-dumbbell text-yellow-400 mb-1"></i>
                 <div class="text-xs font-medium">FitX Style ⭐</div>
@@ -821,8 +761,8 @@
   </div>
 
   <!-- Section Editor Modal -->
-  <div id="section-editor-modal" class="modal-backdrop fixed inset-0 hidden items-center justify-center z-50">
-    <div class="modal-content bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto m-4">
+  <div id="section-editor-modal" class="modal-backdrop fixed inset-0 hidden items-center justify-center z-[9999]">
+    <div class="modal-content bg-white max-w-2xl w-full max-h-[90vh] overflow-y-auto m-4 rounded-xl shadow-2xl">
       <div class="p-6">
         <div class="flex justify-between items-center mb-6">
           <h3 class="text-xl font-bold text-gray-900">Section bearbeiten</h3>

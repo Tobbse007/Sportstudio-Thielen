@@ -1,0 +1,158 @@
+<section class="{{spacing}} bg-gradient-to-br from-[{{primaryColor}}] to-[{{accentColor}}] fade-in animate-on-scroll animated">
+  <div class="{{containerWidth}} mx-auto px-6">
+    <div class="max-w-4xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Links: Info -->
+        <div class="text-white">
+          <div class="inline-block bg-white/20 backdrop-blur-sm px-4 py-2 rounded-full mb-6 fade-in animate-on-scroll animated" style="transition-delay: 0.1s;">
+            <i class="fa-solid fa-envelope mr-2"></i>
+            <span class="{{fontWeight}} text-sm">Newsletter</span>
+          </div>
+          <h2 class="text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-6 fade-in animate-on-scroll animated" style="transition-delay: 0.2s;" contenteditable="true">
+            Bleib auf dem Laufenden
+          </h2>
+          <p class="text-lg text-white/90 mb-8 leading-relaxed {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 0.7000000000000001s;" contenteditable="true">
+            Erhalte exklusive Trainingstipps, Ernährungsguides und als Erste/r Infos zu neuen Angeboten und Events direkt in dein Postfach.
+          </p>
+          
+          <div class="space-y-4">
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fa-solid fa-check text-white"></i>
+              </div>
+              <div>
+                <h3 class="{{fontWeight}} mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.30000000000000004s;" contenteditable="true">Trainingstipps von Profis</h3>
+                <p class="text-white/80 text-sm fade-in animate-on-scroll animated" style="transition-delay: 0.8s;" contenteditable="true">Wöchentliche Übungen und Workout-Routinen</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fa-solid fa-check text-white"></i>
+              </div>
+              <div>
+                <h3 class="{{fontWeight}} mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.4s;" contenteditable="true">Exklusive Angebote</h3>
+                <p class="text-white/80 text-sm fade-in animate-on-scroll animated" style="transition-delay: 0.9s;" contenteditable="true">Sonderaktionen nur für Newsletter-Abonnenten</p>
+              </div>
+            </div>
+            <div class="flex items-start gap-3">
+              <div class="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center flex-shrink-0 mt-1">
+                <i class="fa-solid fa-check text-white"></i>
+              </div>
+              <div>
+                <h3 class="{{fontWeight}} mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.5s;" contenteditable="true">Event-Einladungen</h3>
+                <p class="text-white/80 text-sm fade-in animate-on-scroll animated" style="transition-delay: 1.0s;" contenteditable="true">Als Erstes von Challenges & Workshops erfahren</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Rechts: Form -->
+        <div class="bg-white rounded-2xl p-8 shadow-2xl fade-in animate-on-scroll animated" style="transition-delay: 1.3s;">
+          <form id="newsletter-form" class="space-y-5" onsubmit="handleNewsletterSubmit(event)">
+            <div>
+              <label class="block text-sm {{fontWeight}} text-gray-700 mb-2">Vorname</label>
+              <input type="text" 
+                     required 
+                     placeholder="Max" 
+                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[{{primaryColor}}] focus:outline-none transition-colors">
+            </div>
+            
+            <div>
+              <label class="block text-sm {{fontWeight}} text-gray-700 mb-2">E-Mail Adresse *</label>
+              <input type="email" 
+                     required 
+                     placeholder="max@beispiel.de" 
+                     class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[{{primaryColor}}] focus:outline-none transition-colors">
+            </div>
+            
+            <div>
+              <label class="block text-sm {{fontWeight}} text-gray-700 mb-2">Interessiert an (optional)</label>
+              <select class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-[{{primaryColor}}] focus:outline-none transition-colors">
+                <option value="">Bitte auswählen</option>
+                <option value="krafttraining">Krafttraining</option>
+                <option value="ernaehrung">Ernährungstipps</option>
+                <option value="anfaenger">Anfänger-Guides</option>
+                <option value="fortgeschritten">Fortgeschrittene Tipps</option>
+                <option value="events">Events & Challenges</option>
+              </select>
+            </div>
+            
+            <div class="flex items-start gap-3 pt-2">
+              <input type="checkbox" 
+                     required 
+                     id="newsletter-privacy" 
+                     class="mt-1 w-5 h-5 text-[{{primaryColor}}] border-gray-300 rounded focus:ring-2 focus:ring-[{{primaryColor}}]">
+              <label for="newsletter-privacy" class="text-sm text-gray-600 leading-relaxed">
+                Ich habe die <a href="#datenschutz" class="text-[{{primaryColor}}] hover:underline {{fontWeight}}">Datenschutzerklärung</a> gelesen und stimme der Verarbeitung meiner Daten zu. Ich kann mich jederzeit abmelden. *
+              </label>
+            </div>
+            
+            <button type="submit" 
+                    class="w-full py-4 bg-[{{primaryColor}}] hover:bg-[{{accentColor}}] text-white rounded-lg {{fontWeight}} text-lg transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] flex items-center justify-center gap-2">
+              <i class="fa-solid fa-paper-plane"></i>
+              Jetzt anmelden
+            </button>
+            
+            <p class="text-xs text-gray-500 text-center fade-in animate-on-scroll animated" style="transition-delay: 1.1s;">
+              * Pflichtfelder | Abmeldung jederzeit möglich
+            </p>
+          </form>
+          
+          <!-- Success Message (hidden by default) -->
+          <div id="newsletter-success" class="hidden">
+            <div class="text-center py-8">
+              <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 fade-in animate-on-scroll animated" style="transition-delay: 1.4000000000000001s;">
+                <i class="fa-solid fa-check text-green-600 text-3xl"></i>
+              </div>
+              <h3 class="text-2xl {{fontWeight}} text-gray-900 mb-3 fade-in animate-on-scroll animated" style="transition-delay: 0.6000000000000001s;">Erfolgreich angemeldet! 🎉</h3>
+              <p class="text-gray-600 mb-6 fade-in animate-on-scroll animated" style="transition-delay: 1.2000000000000002s;">
+                Danke für deine Anmeldung! Du erhältst in Kürze eine Bestätigungsmail.
+              </p>
+              <button onclick="resetNewsletterForm()" 
+                      class="px-6 py-2 text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/10 rounded-lg {{fontWeight}} transition-all">
+                Weitere Person anmelden
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Social Proof -->
+      <div class="mt-16 text-center">
+        <div class="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 text-white">
+          <div class="flex -space-x-2">
+            <img src="https://i.pravatar.cc/100?img=1" alt="Member" class="w-10 h-10 rounded-full border-2 border-white">
+            <img src="https://i.pravatar.cc/100?img=2" alt="Member" class="w-10 h-10 rounded-full border-2 border-white">
+            <img src="https://i.pravatar.cc/100?img=3" alt="Member" class="w-10 h-10 rounded-full border-2 border-white">
+            <img src="https://i.pravatar.cc/100?img=4" alt="Member" class="w-10 h-10 rounded-full border-2 border-white">
+            <div class="w-10 h-10 rounded-full border-2 border-white bg-white/20 flex items-center justify-center text-xs {{fontWeight}} fade-in animate-on-scroll animated" style="transition-delay: 1.5s;">+200</div>
+          </div>
+          <span class="text-sm {{fontWeight}}">Bereits über 200 Abonnenten erhalten unseren Newsletter</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    function handleNewsletterSubmit(e) {
+      e.preventDefault();
+      
+      // Formular ausblenden, Erfolg anzeigen
+      document.getElementById('newsletter-form').classList.add('hidden');
+      document.getElementById('newsletter-success').classList.remove('hidden');
+      
+      // In echter Anwendung: API-Call hier einfügen
+      console.log('Newsletter signup:', {
+        email: e.target.querySelector('input[type="email"]').value,
+        name: e.target.querySelector('input[type="text"]').value,
+        interest: e.target.querySelector('select').value
+      });
+    }
+    
+    function resetNewsletterForm() {
+      document.getElementById('newsletter-form').reset();
+      document.getElementById('newsletter-form').classList.remove('hidden');
+      document.getElementById('newsletter-success').classList.add('hidden');
+    }
+  </script>
+</section>

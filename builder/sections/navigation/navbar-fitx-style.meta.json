@@ -1,0 +1,7 @@
+{
+  "id": "navbar-fitx-style",
+  "name": "Navbar - FitX Style",
+  "category": "navigation",
+  "icon": "fa-solid fa-bars",
+  "description": "Moderne Navbar wie FitX - Logo links, Menü Mitte, CTA rechts"
+}

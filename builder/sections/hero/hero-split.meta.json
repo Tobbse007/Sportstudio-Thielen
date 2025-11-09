@@ -1,0 +1,8 @@
+{
+  "id": "hero-split",
+  "name": "Hero - Split Layout",
+  "category": "hero",
+  "icon": "fa-solid fa-columns",
+  "description": "Hero mit Text links, Bild rechts (umkehrbar)",
+  "flippable": true
+}

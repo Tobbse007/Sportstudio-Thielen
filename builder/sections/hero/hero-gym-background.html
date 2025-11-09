@@ -1,0 +1,40 @@
+<section class="relative h-screen flex items-center justify-center overflow-hidden fade-in animate-on-scroll animated">
+  <!-- Hintergrundbild -->
+  <div class="absolute inset-0 z-0">
+    <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&h=1080&fit=crop" 
+         alt="Gym Background" 
+         class="w-full h-full object-cover"
+         contenteditable="false">
+    <div class="absolute inset-0 bg-black/50 fade-in animate-on-scroll animated" style="transition-delay: 0.30000000000000004s;"></div>
+  </div>
+  
+  <!-- Content -->
+  <div class="{{containerWidth}} mx-auto px-6 relative z-10 text-center text-white">
+    <!-- Hauptslogan -->
+    <h1 class="text-5xl md:text-7xl {{fontFamily}} font-black mb-6 leading-tight fade-in animate-on-scroll animated" style="transition-delay: 0.1s;" contenteditable="true">
+      Dein Oldschool Gym<br>
+      mit familiärer Atmosphäre
+    </h1>
+    
+    <!-- Untertext -->
+    <p class="text-xl md:text-2xl mb-10 max-w-3xl mx-auto text-white/90 {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 0.2s;" contenteditable="true">
+      Trainiere wie du willst, wann du willst. Bei uns bist du keine Nummer – du bist Familie.
+    </p>
+    
+    <!-- CTA Buttons -->
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="#mitglied-werden" 
+         class="px-8 py-4 bg-[{{primaryColor}}] hover:bg-[{{accentColor}}] text-white rounded-lg {{fontWeight}} text-lg transition-all hover:scale-105 shadow-2xl" 
+         contenteditable="true">
+        <i class="fa-solid fa-rocket mr-2"></i>
+        Jetzt Mitglied werden
+      </a>
+      <a href="#mehr-erfahren" 
+         class="px-8 py-4 bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white rounded-lg {{fontWeight}} text-lg transition-all" 
+         contenteditable="true">
+        <i class="fa-solid fa-info-circle mr-2"></i>
+        Mehr erfahren
+      </a>
+    </div>
+  </div>
+</section>

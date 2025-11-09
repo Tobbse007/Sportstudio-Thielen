@@ -1,0 +1,7 @@
+{
+  "id": "hero-fullscreen",
+  "name": "Hero - Fullscreen",
+  "category": "hero",
+  "icon": "fa-solid fa-rocket",
+  "description": "Fullscreen Hero mit Gradient-Hintergrund"
+}

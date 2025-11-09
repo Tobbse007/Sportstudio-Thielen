@@ -1,0 +1,7 @@
+{
+  "id": "features-grid",
+  "name": "Features Grid",
+  "category": "features",
+  "icon": "fa-solid fa-sparkles",
+  "description": "4-spaltige Feature-Grid mit Icons und Hover-Effekten"
+}

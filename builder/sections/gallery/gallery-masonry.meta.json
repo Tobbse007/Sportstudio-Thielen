@@ -1,0 +1,7 @@
+{
+  "id": "gallery-masonry",
+  "name": "Gallery - Masonry Layout",
+  "category": "gallery",
+  "icon": "fa-solid fa-grip",
+  "description": "Bilder in unregelmäßigem Masonry-Layout"
+}
