@@ -528,8 +528,18 @@
           </button>
         </div>
         
-        <!-- Kategorien Ansicht -->
-        <div id="categories-view" class="space-y-2">
+        <!-- Lade-Spinner (wird während des Ladens angezeigt) -->
+        <div id="sections-loading" class="flex flex-col items-center justify-center py-12">
+          <div class="relative w-16 h-16 mb-4">
+            <div class="absolute inset-0 border-4 border-blue-200 rounded-full"></div>
+            <div class="absolute inset-0 border-4 border-blue-600 rounded-full border-t-transparent animate-spin"></div>
+          </div>
+          <p class="text-sm text-gray-600 font-medium">Sections werden geladen...</p>
+          <p class="text-xs text-gray-400 mt-1">Bitte warten</p>
+        </div>
+        
+        <!-- Kategorien Ansicht (wird nach dem Laden angezeigt) -->
+        <div id="categories-view" class="space-y-2 hidden">
           <!-- Kategorien werden hier eingefügt -->
         </div>
         

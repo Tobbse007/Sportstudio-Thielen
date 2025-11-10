@@ -1,61 +1,77 @@
-<section class="{{spacing}} bg-[{{backgroundColor}}] fade-in animate-on-scroll animated">
-  <div class="{{containerWidth}} mx-auto px-6">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <!-- Bild Links -->
-      <div class="relative">
+<section class="py-12 sm:py-16 md:{{spacing}} bg-[{{backgroundColor}}] fade-in animate-on-scroll animated">
+  <div class="{{containerWidth}} mx-auto px-4 sm:px-6">
+    
+    <!-- Badge + Titel (Mobile: Zuerst) -->
+    <div class="mb-8 md:hidden">
+      <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-4 fade-in animate-on-scroll animated">
+        <i class="fa-solid fa-dumbbell mr-2"></i>
+        <span class="{{fontWeight}} text-sm">Über uns</span>
+      </div>
+      
+      <h2 class="text-3xl sm:text-4xl {{fontFamily}} {{fontWeight}} mb-4 text-[{{textColor}}] fade-in animate-on-scroll animated" contenteditable="true">
+        Willkommen im Sportstudio Thielen
+      </h2>
+    </div>
+    
+    <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+      <!-- Bild -->
+      <div class="relative order-1 md:order-1">
         <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&h=600&fit=crop" 
              alt="Sportstudio" 
-             class="rounded-2xl shadow-2xl w-full h-[500px] object-cover">
-        <div class="absolute -bottom-6 -right-6 bg-[{{primaryColor}}] text-white p-8 rounded-2xl shadow-xl fade-in animate-on-scroll animated" style="transition-delay: 1.0s;">
-          <div class="text-5xl font-black mb-2" contenteditable="true">30+</div>
-          <div class="text-sm {{fontWeight}}" contenteditable="true">Jahre Erfahrung</div>
+             class="rounded-lg sm:rounded-2xl shadow-2xl w-full h-64 sm:h-80 md:h-[500px] object-cover">
+        <div class="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-[{{primaryColor}}] text-white p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-2xl shadow-xl fade-in animate-on-scroll animated">
+          <div class="text-3xl sm:text-4xl md:text-5xl font-black mb-1 sm:mb-2" contenteditable="true">30+</div>
+          <div class="text-xs sm:text-sm {{fontWeight}}" contenteditable="true">Jahre Erfahrung</div>
         </div>
       </div>
       
-      <!-- Text Rechts -->
-      <div>
-        <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-6 fade-in animate-on-scroll animated" style="transition-delay: 0.1s;">
-          <i class="fa-solid fa-dumbbell mr-2"></i>
-          <span class="{{fontWeight}} text-sm">Über uns</span>
+      <!-- Text -->
+      <div class="order-2 md:order-2">
+        <!-- Badge + Titel (Desktop: Hier) -->
+        <div class="hidden md:block mb-6">
+          <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-6 fade-in animate-on-scroll animated">
+            <i class="fa-solid fa-dumbbell mr-2"></i>
+            <span class="{{fontWeight}} text-sm">Über uns</span>
+          </div>
+          
+          <h2 class="text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-6 text-[{{textColor}}] fade-in animate-on-scroll animated" contenteditable="true">
+            Willkommen im Sportstudio Thielen
+          </h2>
         </div>
         
-        <h2 class="text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-6 text-[{{textColor}}] fade-in animate-on-scroll animated" style="transition-delay: 0.2s;" contenteditable="true">
-          Willkommen im Sportstudio Thielen
-        </h2>
-        
-        <p class="text-lg text-[{{textColor}}]/70 mb-8 {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 0.6000000000000001s;" contenteditable="true">
+        <p class="text-base sm:text-lg text-[{{textColor}}]/70 mb-6 sm:mb-8 fade-in animate-on-scroll animated" contenteditable="true">
           Seit über 30 Jahren das familiäre Oldschool-Gym in deiner Nähe. Bei uns steht der Mensch im Mittelpunkt – kein Fitnessfabrik-Feeling, sondern echte Community und entspannte Atmosphäre.
         </p>
         
         <!-- Besonderheiten -->
-        <div class="space-y-4">
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated" style="transition-delay: 1.1s;">
-              <i class="fa-solid fa-heart text-[{{primaryColor}}] text-xl"></i>
+        <div class="space-y-3 sm:space-y-4">
+          <div class="flex items-start gap-3 sm:gap-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated">
+              <i class="fa-solid fa-heart text-[{{primaryColor}}] text-lg sm:text-xl"></i>
             </div>
             <div>
-              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.30000000000000004s;" contenteditable="true">Familiäre Atmosphäre</h3>
-              <p class="text-sm text-[{{textColor}}]/60 {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 0.7000000000000001s;" contenteditable="true">Man kennt sich, man hilft sich – echte Community</p>
+              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base fade-in animate-on-scroll animated" contenteditable="true">Familiäre Atmosphäre</h3>
+              <p class="text-xs sm:text-sm text-[{{textColor}}]/60 fade-in animate-on-scroll animated" contenteditable="true">Man kennt sich, man hilft sich – echte Community</p>
             </div>
           </div>
           
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated" style="transition-delay: 1.2000000000000002s;">
-              <i class="fa-solid fa-dumbbell text-[{{primaryColor}}] text-xl"></i>
+          <div class="flex items-start gap-3 sm:gap-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated">
+              <i class="fa-solid fa-dumbbell text-[{{primaryColor}}] text-lg sm:text-xl"></i>
             </div>
             <div>
-              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.4s;" contenteditable="true">Oldschool-Atmosphäre</h3>
-              <p class="text-sm text-[{{textColor}}]/60 {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 0.8s;" contenteditable="true">Robuste Geräte, pures Training – kein Schnickschnack</p>
+              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base fade-in animate-on-scroll animated" contenteditable="true">Oldschool-Atmosphäre</h3>
+              <p class="text-xs sm:text-sm text-[{{textColor}}]/60 fade-in animate-on-scroll animated" contenteditable="true">Robuste Geräte, pures Training – kein Schnickschnack</p>
             </div>
           </div>
           
-          <div class="flex items-start gap-4">
-            <div class="w-12 h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated" style="transition-delay: 1.3s;">
-              <i class="fa-solid fa-smile text-[{{primaryColor}}] text-xl"></i>
+          <div class="flex items-start gap-3 sm:gap-4">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated">
+              <i class="fa-solid fa-smile text-[{{primaryColor}}] text-lg sm:text-xl"></i>
             </div>
             <div>
-              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 fade-in animate-on-scroll animated" style="transition-delay: 0.5s;" contenteditable="true">Entspannte Stimmung</h3>
-              <p class="text-sm text-[{{textColor}}]/60 {{fontSize}} fade-in animate-on-scroll animated" style="transition-delay: 0.9s;" contenteditable="true">Kein unangenehmes Gefühl – jeder trainiert auf seinem Level</p>
+              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base fade-in animate-on-scroll animated" contenteditable="true">Entspannte Stimmung</h3>
+              <p class="text-xs sm:text-sm text-[{{textColor}}]/60 fade-in animate-on-scroll animated" contenteditable="true">Kein unangenehmes Gefühl – jeder trainiert auf seinem Level</p>
             </div>
           </div>
         </div>

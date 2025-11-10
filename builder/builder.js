@@ -250,7 +250,7 @@ function inputModalCancel() {
   inputModalCallback = null;
 }
 
-// Section Library aus JSON-Dateien laden
+// Section Library aus JSON-Dateien laden (MIT PARALLELEM LADEN)
 async function loadSectionLibrary() {
   // Alle verfügbaren Sections (ohne Extension - lädt .meta.json + .html)
   const sections = [
@@ -302,57 +302,62 @@ async function loadSectionLibrary() {
     'sections/footer/footer-gym-complete'
   ];
   
-  console.log('%c📦 Loading Section Library...', 'color: #3b82f6; font-weight: bold; font-size: 14px;');
+  console.log('%c📦 Loading Section Library (PARALLEL MODE)...', 'color: #3b82f6; font-weight: bold; font-size: 14px;');
   console.log(`   Total: ${sections.length} sections to load\n`);
   
-  for (const basePath of sections) {
+  const startTime = performance.now();
+  
+  // PARALLELES LADEN - alle Sections gleichzeitig laden!
+  const loadPromises = sections.map(async (basePath) => {
     const sectionName = basePath.split('/').pop();
+    const cacheBuster = `?v=${Date.now()}`;
     
     try {
-      // Cache-Buster hinzufügen um immer aktuelle Version zu laden
-      const cacheBuster = `?v=${Date.now()}`;
+      // Lade Meta und HTML PARALLEL mit Promise.all
+      const [metaResponse, htmlResponse] = await Promise.all([
+        fetch(`${basePath}.meta.json${cacheBuster}`),
+        fetch(`${basePath}.html${cacheBuster}`)
+      ]);
       
-      // Lade Metadaten
-      console.log(`%c📄 ${sectionName}`, 'color: #6366f1; font-weight: bold;');
-      const metaResponse = await fetch(`${basePath}.meta.json${cacheBuster}`);
-      const meta = await metaResponse.json();
-      console.log(`   ✅ META: ${basePath}.meta.json loaded`);
+      const [meta, template] = await Promise.all([
+        metaResponse.json(),
+        htmlResponse.text()
+      ]);
       
-      // Lade HTML-Template
-      const htmlResponse = await fetch(`${basePath}.html${cacheBuster}`);
-      const template = await htmlResponse.text();
-      console.log(`   ✅ HTML: ${basePath}.html loaded (${template.length} chars)`);
-      console.log(`   %c🎯 SOURCE: HTML + Meta-JSON (NEW SYSTEM)`, 'color: #10b981; font-weight: bold;');
-      console.log('');
+      console.log(`%c✅ ${sectionName}`, 'color: #10b981; font-weight: bold;');
       
-      // Kombiniere Metadaten + Template
-      sectionLibrary.push({
+      return {
         ...meta,
         template: template,
-        _loadedFrom: 'HTML+META'  // Debug-Flag
-      });
+        _loadedFrom: 'HTML+META'
+      };
     } catch (error) {
       // Fallback: Versuche alte JSON zu laden
-      console.log(`   %c⚠️ HTML/Meta failed, trying old JSON...`, 'color: #f59e0b;');
       try {
-        const cacheBuster = `?v=${Date.now()}`;
         const jsonResponse = await fetch(`${basePath}.json${cacheBuster}`);
         const section = await jsonResponse.json();
-        console.log(`   %c❌ LOADED FROM OLD JSON (${basePath}.json)`, 'color: #ef4444; font-weight: bold;');
-        console.log(`   ⚠️ You should migrate this section to HTML+Meta format!`);
-        console.log('');
-        sectionLibrary.push({
+        console.log(`%c⚠️ ${sectionName} (OLD JSON)`, 'color: #f59e0b; font-weight: bold;');
+        return {
           ...section,
-          _loadedFrom: 'JSON-OLD'  // Debug-Flag
-        });
+          _loadedFrom: 'JSON-OLD'
+        };
       } catch (jsonError) {
-        console.error(`   ❌ ERROR: Could not load ${basePath}:`, error);
-        console.log('');
+        console.error(`%c❌ ${sectionName} FAILED`, 'color: #ef4444; font-weight: bold;', error);
+        return null;
       }
     }
-  }
+  });
   
-  console.log('%c✅ Section Library Loaded!', 'color: #10b981; font-weight: bold; font-size: 14px;');
+  // Warte auf ALLE Sections gleichzeitig
+  const loadedSections = await Promise.all(loadPromises);
+  
+  // Filtere null-Werte (fehlgeschlagene Loads) und füge zu Library hinzu
+  sectionLibrary = loadedSections.filter(section => section !== null);
+  
+  const endTime = performance.now();
+  const loadTime = ((endTime - startTime) / 1000).toFixed(2);
+  
+  console.log(`\n%c✅ Section Library Loaded in ${loadTime}s!`, 'color: #10b981; font-weight: bold; font-size: 14px;');
   console.log(`   Total loaded: ${sectionLibrary.length} sections`);
   
   // Statistik: Wie viele von HTML vs JSON?
@@ -361,6 +366,7 @@ async function loadSectionLibrary() {
   console.log(`\n%c📊 STATISTICS:`, 'color: #3b82f6; font-weight: bold;');
   console.log(`   🆕 HTML+Meta: ${htmlCount} sections (${Math.round(htmlCount/sectionLibrary.length*100)}%)`);
   console.log(`   🗂️ Old JSON:  ${jsonCount} sections (${Math.round(jsonCount/sectionLibrary.length*100)}%)`);
+  console.log(`   ⚡ Load Time: ${loadTime}s (parallel loading)`);
   
   if (jsonCount > 0) {
     console.log(`\n%c⚠️ WARNING: ${jsonCount} sections still using old JSON format!`, 'color: #ef4444; font-weight: bold;');
@@ -629,6 +635,15 @@ document.addEventListener('DOMContentLoaded', async () => {
 // Section Library initialisieren
 function initSectionLibrary() {
   const categoriesView = document.getElementById('categories-view');
+  const loadingSpinner = document.getElementById('sections-loading');
+  
+  // Verstecke Spinner, zeige Kategorien
+  if (loadingSpinner) {
+    loadingSpinner.classList.add('hidden');
+  }
+  if (categoriesView) {
+    categoriesView.classList.remove('hidden');
+  }
   
   // Gruppiere nach Kategorien
   categories = {};

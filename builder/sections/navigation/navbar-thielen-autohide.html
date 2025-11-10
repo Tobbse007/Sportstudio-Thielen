@@ -35,49 +35,50 @@
   </div>
   
   <!-- Mobile Menu Overlay -->
-  <div id="thielen-mobile-menu" class="lg:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-40 hidden" onclick="toggleThielenMobileMenu()">
-    <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform translate-x-full transition-transform duration-300" id="thielen-mobile-menu-panel" onclick="event.stopPropagation()">
+  <div id="thielen-mobile-menu" class="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[9999] hidden" onclick="toggleThielenMobileMenu()">
+    <div class="absolute right-0 top-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform translate-x-full transition-transform duration-300" id="thielen-mobile-menu-panel" onclick="event.stopPropagation()" style="background-color: {{backgroundColor}} !important;">
       <!-- Mobile Header -->
-      <div class="flex items-center justify-between p-6 border-b border-gray-200">
+      <div class="flex items-center justify-between p-4 sm:p-6 border-b border-gray-200" style="border-color: {{primaryColor}}20 !important;">
         <div class="flex items-center gap-2">
-          <i class="fa-solid fa-dumbbell text-2xl text-[{{primaryColor}}]"></i>
+          <i class="fa-solid fa-dumbbell text-xl sm:text-2xl text-[{{primaryColor}}]"></i>
           <div class="leading-tight">
-            <div class="text-lg {{fontWeight}} text-[{{textColor}}]">Sportstudio Thielen</div>
+            <div class="text-base sm:text-lg {{fontWeight}} text-[{{textColor}}]">Sportstudio Thielen</div>
             <div class="text-xs text-[{{textColor}}]/70">Oldschool Gym</div>
           </div>
         </div>
-        <button onclick="toggleThielenMobileMenu()" class="text-gray-500 hover:text-gray-700 text-2xl p-2" aria-label="Menü schließen">
+        <button onclick="toggleThielenMobileMenu()" class="text-[{{textColor}}] hover:text-[{{primaryColor}}] text-xl sm:text-2xl p-2" aria-label="Menü schließen">
           <i class="fas fa-times"></i>
         </button>
       </div>
       
       <!-- Mobile Navigation Links -->
-      <div class="p-6 space-y-2">
-        <a href="#home" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-gray-800 hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium" contenteditable="true">
-          <i class="fa-solid fa-home w-5"></i>
+      <div class="p-4 sm:p-6 space-y-2 overflow-y-auto bg-white" style="max-height: calc(100vh - 180px); background-color: {{backgroundColor}} !important;">
+        <a href="#home" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-[{{textColor}}] hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium text-sm sm:text-base bg-white" style="background-color: {{backgroundColor}} !important;" contenteditable="true">
+          <i class="fa-solid fa-home w-5 text-[{{primaryColor}}]"></i>
           <span>Home</span>
         </a>
-        <a href="#about" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-gray-800 hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium" contenteditable="true">
-          <i class="fa-solid fa-circle-info w-5"></i>
+        <a href="#about" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-[{{textColor}}] hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium text-sm sm:text-base" contenteditable="true">
+          <i class="fa-solid fa-circle-info w-5 text-[{{primaryColor}}]"></i>
           <span>Über uns</span>
         </a>
-        <a href="#preise" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-gray-800 hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium" contenteditable="true">
-          <i class="fa-solid fa-tag w-5"></i>
+        <a href="#preise" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-[{{textColor}}] hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium text-sm sm:text-base" contenteditable="true">
+          <i class="fa-solid fa-tag w-5 text-[{{primaryColor}}]"></i>
           <span>Preise</span>
         </a>
-        <a href="#blog" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-gray-800 hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium" contenteditable="true">
-          <i class="fa-solid fa-newspaper w-5"></i>
+        <a href="#blog" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-[{{textColor}}] hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium text-sm sm:text-base" contenteditable="true">
+          <i class="fa-solid fa-newspaper w-5 text-[{{primaryColor}}]"></i>
           <span>Blog</span>
         </a>
-        <a href="#kontakt" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-gray-800 hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium" contenteditable="true">
-          <i class="fa-solid fa-envelope w-5"></i>
+        <a href="#kontakt" onclick="toggleThielenMobileMenu()" class="flex items-center gap-3 py-3 px-4 text-[{{textColor}}] hover:text-[{{primaryColor}}] hover:bg-[{{primaryColor}}]/5 rounded-lg transition-all font-medium text-sm sm:text-base" contenteditable="true">
+          <i class="fa-solid fa-envelope w-5 text-[{{primaryColor}}]"></i>
           <span>Kontakt</span>
         </a>
         
         <!-- Mobile CTA Button -->
-        <a href="#mitglied-werden" onclick="toggleThielenMobileMenu()" class="flex items-center justify-center gap-2 mt-6 px-6 py-4 bg-[{{primaryColor}}] text-white rounded-lg {{fontWeight}} text-center hover:bg-[{{accentColor}}] transition-all shadow-lg" contenteditable="true">
+        <a href="#mitglied-werden" onclick="toggleThielenMobileMenu()" class="flex items-center justify-center gap-2 mt-4 px-6 py-3 sm:py-4 bg-[{{primaryColor}}] text-white rounded-lg {{fontWeight}} text-center hover:bg-[{{accentColor}}] transition-all shadow-lg text-sm sm:text-base" contenteditable="true">
           <i class="fa-solid fa-calendar-check"></i>
           <span>Platz buchen</span>
+        </a>
         </a>
       </div>
     </div>
