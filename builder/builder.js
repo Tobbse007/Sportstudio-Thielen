@@ -868,7 +868,40 @@ function addSection(sectionId) {
   const elementsWithRadius = sectionEl.querySelectorAll('[class*="rounded"]');
   DEBUG.log(`  📐 ${elementsWithRadius.length} Elemente mit Abrundung`, 'info');
   
+  // ⚡ FIX: Aktiviere Animationen im Builder sofort (weißer Bildschirm Fix)
+  activateSectionAnimations(sectionEl);
+  
   DEBUG.log(`  ✅ Section '${uniqueId}' erfolgreich hinzugefügt!`, 'success');
+}
+
+// ============================================
+// ANIMATION ACTIVATION (Builder Fix)
+// ============================================
+
+/**
+ * Aktiviert alle Animationen in einer Section sofort im Builder
+ * Verhindert weißen Bildschirm durch opacity: 0
+ */
+function activateSectionAnimations(sectionEl) {
+  // Finde alle .animated-section Elemente
+  const animatedSections = sectionEl.querySelectorAll('.animated-section');
+  
+  if (animatedSections.length > 0) {
+    DEBUG.log(`  🎬 ${animatedSections.length} animierte Section(s) gefunden - aktiviere sofort`, 'info');
+    
+    // Aktiviere alle sofort (kein Warten auf Scroll im Builder)
+    animatedSections.forEach((section, idx) => {
+      section.classList.add('anim-active');
+      DEBUG.log(`    ✓ Animation #${idx+1} aktiviert`, 'success');
+    });
+  }
+  
+  // Finde auch einzelne .anim-item Elemente (falls direkt verwendet)
+  const animItems = sectionEl.querySelectorAll('.anim-item');
+  if (animItems.length > 0) {
+    DEBUG.log(`  🎬 ${animItems.length} animierte Item(s) gefunden - aktiviere sofort`, 'info');
+    animItems.forEach(item => item.classList.add('anim-active'));
+  }
 }
 
 function deleteSection(id) {
@@ -1511,6 +1544,9 @@ function refreshAllSections() {
         DEBUG.log(`    ⚠️ Keine Icons in Section gefunden!`, 'warning');
       }
     }
+    
+    // ⚡ FIX: Aktiviere Animationen nach Refresh
+    activateSectionAnimations(sectionEl);
   });
   
   DEBUG.log(`  ✅ Alle Sections aktualisiert!`, 'success');
@@ -1583,7 +1619,28 @@ function previewWebsite() {
   const canvas = document.getElementById('canvas-container');
   const sections = canvas.querySelectorAll('.section-item');
   
-  let html = `<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><script src="https://cdn.tailwindcss.com"></script><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css"><style>*{font-family:'Montserrat',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}</style></head><body>`;
+  let html = `<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vorschau - Sportstudio Thielen</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.5.1/css/all.min.css">
+  <style>
+    * { font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+    html { scroll-behavior: smooth; }
+    i[class*="fa-"] { 
+      font-family: "Font Awesome 6 Free", "Font Awesome 6 Pro", "Font Awesome 6 Brands" !important;
+      font-style: normal !important;
+      font-weight: 900 !important;
+    }
+  </style>
+</head>
+<body>`;
   
   sections.forEach(section => {
     const content = section.cloneNode(true);
@@ -1591,6 +1648,10 @@ function previewWebsite() {
     // Remove contenteditable for preview
     content.querySelectorAll('[contenteditable]').forEach(el => {
       el.removeAttribute('contenteditable');
+    });
+    // ⚡ FIX: Entferne .anim-active für Vorschau (damit Scroll-Animationen funktionieren)
+    content.querySelectorAll('.anim-active').forEach(el => {
+      el.classList.remove('anim-active');
     });
     html += content.innerHTML;
   });
@@ -1827,8 +1888,10 @@ function executeExport() {
       el.removeAttribute('contenteditable');
     });
     
-    // Animation-Klassen sind jetzt in den Section-Templates definiert
-    // Keine nachträgliche Änderung mehr nötig
+    // ⚡ FIX: Entferne .anim-active Klasse für Export (damit Animationen beim Scrollen triggern)
+    content.querySelectorAll('.anim-active').forEach(el => {
+      el.classList.remove('anim-active');
+    });
     
     html += content.innerHTML + '\n';
   });

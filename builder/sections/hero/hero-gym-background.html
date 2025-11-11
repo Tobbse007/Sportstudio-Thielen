@@ -1,40 +1,152 @@
-<section class="relative min-h-screen flex items-center justify-center overflow-hidden fade-in animate-on-scroll animated">
+<section class="animated-section relative min-h-screen flex items-center justify-center overflow-hidden">
   <!-- Hintergrundbild -->
   <div class="absolute inset-0 z-0">
     <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&h=1080&fit=crop" 
          alt="Gym Background" 
          class="w-full h-full object-cover"
          contenteditable="false">
-    <div class="absolute inset-0 bg-black/60 fade-in animate-on-scroll animated" style="transition-delay: 0.1s;"></div>
+    <div class="anim-item anim-delay-1 absolute inset-0 bg-black/60"></div>
   </div>
   
   <!-- Content -->
   <div class="{{containerWidth}} mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center text-white py-24 sm:py-28 md:py-32 mt-16 sm:mt-20">
     <!-- Hauptslogan -->
-    <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl {{fontFamily}} font-black mb-4 sm:mb-6 leading-tight fade-in animate-on-scroll animated" style="transition-delay: 0.1s;" contenteditable="true">
+    <h1 class="anim-item anim-delay-2 text-3xl sm:text-4xl md:text-5xl lg:text-6xl {{fontFamily}} font-black mb-4 sm:mb-6 leading-tight" contenteditable="true">
       Dein Oldschool Gym<br class="hidden sm:block">
       <span class="sm:inline">mit familiärer Atmosphäre</span>
     </h1>
     
     <!-- Untertext -->
-    <p class="text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto text-white/90 fade-in animate-on-scroll animated" style="transition-delay: 0.2s;" contenteditable="true">
+    <p class="anim-item anim-delay-3 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto text-white/90" contenteditable="true">
       Trainiere wie du willst, wann du willst. Bei uns bist du keine Nummer – du bist Familie.
     </p>
     
     <!-- CTA Buttons -->
     <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto">
       <a href="#mitglied-werden" 
-         class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[{{primaryColor}}] hover:bg-[{{accentColor}}] text-white rounded-lg {{fontWeight}} text-sm sm:text-base lg:text-lg transition-all hover:scale-105 shadow-2xl whitespace-nowrap" 
+         class="anim-item anim-delay-4 hover-lift w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-[{{primaryColor}}] hover:bg-[{{accentColor}}] text-white rounded-lg {{fontWeight}} text-sm sm:text-base lg:text-lg transition-all hover:shadow-2xl whitespace-nowrap" 
          contenteditable="true">
         <i class="fa-solid fa-rocket mr-2"></i>
         Jetzt Mitglied werden
       </a>
       <a href="#mehr-erfahren" 
-         class="w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white rounded-lg {{fontWeight}} text-sm sm:text-base lg:text-lg transition-all whitespace-nowrap" 
+         class="anim-item anim-delay-5 hover-lift w-full sm:w-auto px-6 sm:px-8 py-3 sm:py-4 bg-transparent border-2 border-white hover:bg-white hover:text-gray-900 text-white rounded-lg {{fontWeight}} text-sm sm:text-base lg:text-lg transition-all whitespace-nowrap" 
          contenteditable="true">
         <i class="fa-solid fa-info-circle mr-2"></i>
         Mehr erfahren
       </a>
     </div>
   </div>
+  
+  <!-- Universal Animation System with Scroll Trigger -->
+  <style>
+    /* Base Section - STARTET UNSICHTBAR */
+    .animated-section {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    /* AKTIV wenn im Viewport */
+    .animated-section.anim-active {
+      animation: sectionFadeIn 0.8s ease-out forwards;
+    }
+    
+    /* Animated Items - STARTET UNSICHTBAR */
+    .anim-item {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    /* AKTIV wenn Section im Viewport */
+    .animated-section.anim-active .anim-item {
+      animation: itemFadeIn 0.6s ease-out forwards;
+    }
+    
+    .anim-delay-1 { animation-delay: 0.1s; }
+    .anim-delay-2 { animation-delay: 0.2s; }
+    .anim-delay-3 { animation-delay: 0.3s; }
+    .anim-delay-4 { animation-delay: 0.4s; }
+    .anim-delay-5 { animation-delay: 0.5s; }
+    .anim-delay-6 { animation-delay: 0.6s; }
+    .anim-delay-7 { animation-delay: 0.7s; }
+    .anim-delay-8 { animation-delay: 0.8s; }
+    .anim-delay-9 { animation-delay: 0.9s; }
+    
+    /* Keyframes */
+    @keyframes sectionFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes itemFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Hover Effects */
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+    
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+  </style>
+  
+  <!-- Scroll-Triggered Animation Script -->
+  <script>
+    (function() {
+      if (window.animationObserverInitialized) return;
+      window.animationObserverInitialized = true;
+      
+      function initAnimationObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('anim-active');
+            }
+          });
+        }, {
+          threshold: 0.05,
+          rootMargin: '50px'
+        });
+        
+        const animatedSections = document.querySelectorAll('.animated-section');
+        animatedSections.forEach(section => {
+          observer.observe(section);
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            section.classList.add('anim-active');
+          }
+        });
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAnimationObserver);
+      } else {
+        initAnimationObserver();
+      }
+      setTimeout(initAnimationObserver, 100);
+    })();
+  </script>
 </section>

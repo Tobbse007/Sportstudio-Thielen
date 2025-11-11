@@ -1,14 +1,14 @@
-<section class="py-12 sm:py-16 md:{{spacing}} bg-[{{backgroundColor}}] fade-in animate-on-scroll animated">
+<section class="animated-section py-12 sm:py-16 md:{{spacing}} bg-[{{backgroundColor}}]">
   <div class="{{containerWidth}} mx-auto px-4 sm:px-6">
     
     <!-- Badge + Titel (Mobile: Zuerst) -->
     <div class="mb-8 md:hidden">
-      <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-4 fade-in animate-on-scroll animated">
+      <div class="anim-item anim-delay-1 inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-4">
         <i class="fa-solid fa-dumbbell mr-2"></i>
         <span class="{{fontWeight}} text-sm">Über uns</span>
       </div>
       
-      <h2 class="text-3xl sm:text-4xl {{fontFamily}} {{fontWeight}} mb-4 text-[{{textColor}}] fade-in animate-on-scroll animated" contenteditable="true">
+      <h2 class="anim-item anim-delay-2 text-3xl sm:text-4xl {{fontFamily}} {{fontWeight}} mb-4 text-[{{textColor}}]" contenteditable="true">
         Willkommen im Sportstudio Thielen
       </h2>
     </div>
@@ -18,8 +18,8 @@
       <div class="relative order-1 md:order-1">
         <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&h=600&fit=crop" 
              alt="Sportstudio" 
-             class="rounded-lg sm:rounded-2xl shadow-2xl w-full h-64 sm:h-80 md:h-[500px] object-cover">
-        <div class="absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-[{{primaryColor}}] text-white p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-2xl shadow-xl fade-in animate-on-scroll animated">
+             class="anim-item anim-delay-3 hover-scale rounded-lg sm:rounded-2xl shadow-2xl w-full h-64 sm:h-80 md:h-[500px] object-cover transition-all duration-300">
+        <div class="anim-item anim-delay-4 absolute -bottom-4 sm:-bottom-6 -right-4 sm:-right-6 bg-[{{primaryColor}}] text-white p-4 sm:p-6 md:p-8 rounded-lg sm:rounded-2xl shadow-xl">
           <div class="text-3xl sm:text-4xl md:text-5xl font-black mb-1 sm:mb-2" contenteditable="true">30+</div>
           <div class="text-xs sm:text-sm {{fontWeight}}" contenteditable="true">Jahre Erfahrung</div>
         </div>
@@ -29,53 +29,165 @@
       <div class="order-2 md:order-2">
         <!-- Badge + Titel (Desktop: Hier) -->
         <div class="hidden md:block mb-6">
-          <div class="inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-6 fade-in animate-on-scroll animated">
+          <div class="anim-item anim-delay-1 inline-block bg-[{{primaryColor}}]/10 text-[{{primaryColor}}] px-4 py-2 rounded-full mb-6">
             <i class="fa-solid fa-dumbbell mr-2"></i>
             <span class="{{fontWeight}} text-sm">Über uns</span>
           </div>
           
-          <h2 class="text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-6 text-[{{textColor}}] fade-in animate-on-scroll animated" contenteditable="true">
+          <h2 class="anim-item anim-delay-2 text-4xl md:text-5xl {{fontFamily}} {{fontWeight}} mb-6 text-[{{textColor}}]" contenteditable="true">
             Willkommen im Sportstudio Thielen
           </h2>
         </div>
         
-        <p class="text-base sm:text-lg text-[{{textColor}}]/70 mb-6 sm:mb-8 fade-in animate-on-scroll animated" contenteditable="true">
+        <p class="anim-item anim-delay-5 text-base sm:text-lg text-[{{textColor}}]/70 mb-6 sm:mb-8" contenteditable="true">
           Seit über 30 Jahren das familiäre Oldschool-Gym in deiner Nähe. Bei uns steht der Mensch im Mittelpunkt – kein Fitnessfabrik-Feeling, sondern echte Community und entspannte Atmosphäre.
         </p>
         
         <!-- Besonderheiten -->
         <div class="space-y-3 sm:space-y-4">
-          <div class="flex items-start gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated">
-              <i class="fa-solid fa-heart text-[{{primaryColor}}] text-lg sm:text-xl"></i>
+          <div class="anim-item anim-delay-6 hover-lift flex items-start gap-3 sm:gap-4 group cursor-pointer">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-[{{primaryColor}}]/20 transition-all duration-300">
+              <i class="fa-solid fa-heart text-[{{primaryColor}}] text-lg sm:text-xl group-hover:scale-110 transition-transform"></i>
             </div>
             <div>
-              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base fade-in animate-on-scroll animated" contenteditable="true">Familiäre Atmosphäre</h3>
-              <p class="text-xs sm:text-sm text-[{{textColor}}]/60 fade-in animate-on-scroll animated" contenteditable="true">Man kennt sich, man hilft sich – echte Community</p>
+              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base" contenteditable="true">Familiäre Atmosphäre</h3>
+              <p class="text-xs sm:text-sm text-[{{textColor}}]/60" contenteditable="true">Man kennt sich, man hilft sich – echte Community</p>
             </div>
           </div>
           
-          <div class="flex items-start gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated">
-              <i class="fa-solid fa-dumbbell text-[{{primaryColor}}] text-lg sm:text-xl"></i>
+          <div class="anim-item anim-delay-7 hover-lift flex items-start gap-3 sm:gap-4 group cursor-pointer">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-[{{primaryColor}}]/20 transition-all duration-300">
+              <i class="fa-solid fa-dumbbell text-[{{primaryColor}}] text-lg sm:text-xl group-hover:scale-110 transition-transform"></i>
             </div>
             <div>
-              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base fade-in animate-on-scroll animated" contenteditable="true">Oldschool-Atmosphäre</h3>
-              <p class="text-xs sm:text-sm text-[{{textColor}}]/60 fade-in animate-on-scroll animated" contenteditable="true">Robuste Geräte, pures Training – kein Schnickschnack</p>
+              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base" contenteditable="true">Oldschool-Atmosphäre</h3>
+              <p class="text-xs sm:text-sm text-[{{textColor}}]/60" contenteditable="true">Robuste Geräte, pures Training – kein Schnickschnack</p>
             </div>
           </div>
           
-          <div class="flex items-start gap-3 sm:gap-4">
-            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 fade-in animate-on-scroll animated">
-              <i class="fa-solid fa-smile text-[{{primaryColor}}] text-lg sm:text-xl"></i>
+          <div class="anim-item anim-delay-8 hover-lift flex items-start gap-3 sm:gap-4 group cursor-pointer">
+            <div class="w-10 h-10 sm:w-12 sm:h-12 bg-[{{primaryColor}}]/10 rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-[{{primaryColor}}]/20 transition-all duration-300">
+              <i class="fa-solid fa-smile text-[{{primaryColor}}] text-lg sm:text-xl group-hover:scale-110 transition-transform"></i>
             </div>
             <div>
-              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base fade-in animate-on-scroll animated" contenteditable="true">Entspannte Stimmung</h3>
-              <p class="text-xs sm:text-sm text-[{{textColor}}]/60 fade-in animate-on-scroll animated" contenteditable="true">Kein unangenehmes Gefühl – jeder trainiert auf seinem Level</p>
+              <h3 class="{{fontWeight}} text-[{{textColor}}] mb-1 text-sm sm:text-base" contenteditable="true">Entspannte Stimmung</h3>
+              <p class="text-xs sm:text-sm text-[{{textColor}}]/60" contenteditable="true">Kein unangenehmes Gefühl – jeder trainiert auf seinem Level</p>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
+  <!-- Universal Animation System with Scroll Trigger -->
+  <style>
+    /* Base Section - STARTET UNSICHTBAR */
+    .animated-section {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    
+    /* AKTIV wenn im Viewport */
+    .animated-section.anim-active {
+      animation: sectionFadeIn 0.8s ease-out forwards;
+    }
+    
+    /* Animated Items - STARTET UNSICHTBAR */
+    .anim-item {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    /* AKTIV wenn Section im Viewport */
+    .animated-section.anim-active .anim-item {
+      animation: itemFadeIn 0.6s ease-out forwards;
+    }
+    
+    .anim-delay-1 { animation-delay: 0.1s; }
+    .anim-delay-2 { animation-delay: 0.2s; }
+    .anim-delay-3 { animation-delay: 0.3s; }
+    .anim-delay-4 { animation-delay: 0.4s; }
+    .anim-delay-5 { animation-delay: 0.5s; }
+    .anim-delay-6 { animation-delay: 0.6s; }
+    .anim-delay-7 { animation-delay: 0.7s; }
+    .anim-delay-8 { animation-delay: 0.8s; }
+    .anim-delay-9 { animation-delay: 0.9s; }
+    
+    /* Keyframes */
+    @keyframes sectionFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes itemFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    /* Hover Effects */
+    .hover-lift {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .hover-lift:hover {
+      transform: translateY(-4px) scale(1.02);
+    }
+    
+    .hover-scale {
+      transition: transform 0.3s ease;
+    }
+    
+    .hover-scale:hover {
+      transform: scale(1.05);
+    }
+  </style>
+  
+  <!-- Scroll-Triggered Animation Script -->
+  <script>
+    (function() {
+      if (window.animationObserverInitialized) return;
+      window.animationObserverInitialized = true;
+      
+      function initAnimationObserver() {
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('anim-active');
+            }
+          });
+        }, {
+          threshold: 0.05,
+          rootMargin: '50px'
+        });
+        
+        const animatedSections = document.querySelectorAll('.animated-section');
+        animatedSections.forEach(section => {
+          observer.observe(section);
+          const rect = section.getBoundingClientRect();
+          if (rect.top < window.innerHeight && rect.bottom > 0) {
+            section.classList.add('anim-active');
+          }
+        });
+      }
+      
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initAnimationObserver);
+      } else {
+        initAnimationObserver();
+      }
+      setTimeout(initAnimationObserver, 100);
+    })();
+  </script>
 </section>

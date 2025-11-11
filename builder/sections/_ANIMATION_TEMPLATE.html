@@ -1,0 +1,127 @@
+<!-- 
+  🎯 SCROLL-TRIGGERED ANIMATION TEMPLATE
+  
+  Kopiere diesen <style> + <script> Block ans Ende JEDER animated-section!
+  Animationen starten nur wenn die Section in den Viewport scrollt.
+-->
+
+<!-- Universal Animation System with Scroll Trigger -->
+<style>
+  /* Base Section - STARTET UNSICHTBAR */
+  .animated-section {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  
+  /* AKTIV wenn im Viewport */
+  .animated-section.anim-active {
+    animation: sectionFadeIn 0.8s ease-out forwards;
+  }
+  
+  /* Animated Items - STARTET UNSICHTBAR */
+  .anim-item {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  
+  /* AKTIV wenn Section im Viewport */
+  .animated-section.anim-active .anim-item {
+    animation: itemFadeIn 0.6s ease-out forwards;
+  }
+  
+  /* Delays für gestaffelte Animationen */
+  .anim-delay-1 { animation-delay: 0.1s; }
+  .anim-delay-2 { animation-delay: 0.2s; }
+  .anim-delay-3 { animation-delay: 0.3s; }
+  .anim-delay-4 { animation-delay: 0.4s; }
+  .anim-delay-5 { animation-delay: 0.5s; }
+  .anim-delay-6 { animation-delay: 0.6s; }
+  .anim-delay-7 { animation-delay: 0.7s; }
+  .anim-delay-8 { animation-delay: 0.8s; }
+  .anim-delay-9 { animation-delay: 0.9s; }
+  
+  /* Keyframes - Fade Up */
+  @keyframes sectionFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes itemFadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* Hover Effects */
+  .hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+  
+  .hover-lift:hover {
+    transform: translateY(-4px) scale(1.02);
+  }
+  
+  .hover-scale {
+    transition: transform 0.3s ease;
+  }
+  
+  .hover-scale:hover {
+    transform: scale(1.05);
+  }
+</style>
+
+<!-- Scroll-Triggered Animation Script -->
+<script>
+  (function() {
+    // Nur einmal initialisieren
+    if (window.animationObserverInitialized) return;
+    window.animationObserverInitialized = true;
+    
+    // Funktion zum Initialisieren des Observers
+    function initAnimationObserver() {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('anim-active');
+          }
+        });
+      }, {
+        threshold: 0.05,  // Noch früher triggern (5%)
+        rootMargin: '50px' // Auch nach oben erweitern
+      });
+      
+      // Alle animated-sections beobachten
+      const animatedSections = document.querySelectorAll('.animated-section');
+      animatedSections.forEach(section => {
+        observer.observe(section);
+        
+        // SOFORT aktivieren wenn schon sichtbar (Above-the-fold)
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          section.classList.add('anim-active');
+        }
+      });
+    }
+    
+    // Sofort initialisieren UND bei DOMContentLoaded als Fallback
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initAnimationObserver);
+    } else {
+      initAnimationObserver();
+    }
+    
+    // Zusätzlich nach kurzer Verzögerung (für dynamisch geladene Sections)
+    setTimeout(initAnimationObserver, 100);
+  })();
+</script>

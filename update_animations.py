@@ -1,23 +1,13 @@
-<section class="animated-section min-h-screen flex items-center justify-center bg-gradient-to-br from-[{{primaryColor}}] via-[{{secondaryColor}}] to-[{{accentColor}}] text-white relative overflow-hidden">
-  <div class="absolute inset-0 bg-black/20"></div>
-  <div class="{{containerWidth}} mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 py-24 sm:py-28 md:py-32 mt-16 sm:mt-20">
-    <h1 class="anim-item anim-delay-1 text-3xl sm:text-4xl md:text-5xl lg:text-6xl {{fontFamily}} {{fontWeight}} mb-4 sm:mb-6 leading-tight" contenteditable="true">
-      Dein Oldschool Gym
-    </h1>
-    <p class="anim-item anim-delay-2 text-base sm:text-lg md:text-xl mb-8 sm:mb-10 max-w-3xl mx-auto text-white/90" contenteditable="true">
-      Authentisch. Familiär. Seit den 90ern.
-    </p>
-    <div class="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center max-w-md sm:max-w-none mx-auto px-4 sm:px-0">
-      <button class="anim-item anim-delay-3 hover-lift w-full sm:w-auto bg-white text-[{{primaryColor}}] px-6 sm:px-8 py-3 sm:py-4 rounded-[{{borderRadius}}] {{fontWeight}} text-sm sm:text-base hover:shadow-2xl transition-all duration-300 whitespace-nowrap" contenteditable="true">
-        <i class="fa-solid fa-dumbbell mr-2"></i>Probetraining buchen
-      </button>
-      <button class="anim-item anim-delay-4 hover-lift w-full sm:w-auto bg-transparent border-2 border-white text-white px-6 sm:px-8 py-3 sm:py-4 rounded-[{{borderRadius}}] {{fontWeight}} text-sm sm:text-base hover:bg-white hover:text-[{{primaryColor}}] transition-all duration-300 whitespace-nowrap" contenteditable="true">
-        <i class="fa-solid fa-circle-info mr-2"></i>Mehr erfahren
-      </button>
-    </div>
-  </div>
-  
-  <!-- Universal Animation System with Scroll Trigger -->
+#!/usr/bin/env python3
+"""
+Batch-Update: Fügt Scroll-Triggered Animations zu allen Sections hinzu
+"""
+
+import os
+import re
+
+# Die neuen Style + Script Blöcke
+NEW_STYLE_SCRIPT = '''  <!-- Universal Animation System with Scroll Trigger -->
   <style>
     /* Base Section - STARTET UNSICHTBAR */
     .animated-section {
@@ -47,6 +37,9 @@
     .anim-delay-4 { animation-delay: 0.4s; }
     .anim-delay-5 { animation-delay: 0.5s; }
     .anim-delay-6 { animation-delay: 0.6s; }
+    .anim-delay-7 { animation-delay: 0.7s; }
+    .anim-delay-8 { animation-delay: 0.8s; }
+    .anim-delay-9 { animation-delay: 0.9s; }
     
     /* Keyframes */
     @keyframes sectionFadeIn {
@@ -132,5 +125,51 @@
       // Zusätzlich nach kurzer Verzögerung (für dynamisch geladene Sections)
       setTimeout(initAnimationObserver, 100);
     })();
-  </script>
-</section>
+  </script>'''
+
+# Files die geändert werden sollen
+FILES_TO_UPDATE = [
+    'builder/sections/features/services-gym-cards.html',
+    'builder/sections/features/about-gym-story.html',
+    'builder/sections/hero/hero-gym-background.html',
+    'builder/sections/pricing/pricing-table.html',
+    'builder/sections/cta/cta-center.html',
+]
+
+def update_file(filepath):
+    """Updated eine einzelne HTML-Datei"""
+    if not os.path.exists(filepath):
+        print(f"❌ Nicht gefunden: {filepath}")
+        return False
+    
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+    
+    # Pattern: Finde <!-- Universal Animation System --> bis </section>
+    pattern = r'(  <!-- Universal Animation System -->.*?)(</section>)'
+    
+    def replace_func(match):
+        return NEW_STYLE_SCRIPT + '\n' + match.group(2)
+    
+    new_content, count = re.subn(pattern, replace_func, content, flags=re.DOTALL)
+    
+    if count > 0:
+        with open(filepath, 'w', encoding='utf-8') as f:
+            f.write(new_content)
+        print(f"✅ Updated: {filepath} ({count} replacements)")
+        return True
+    else:
+        print(f"⚠️  Kein Match gefunden in: {filepath}")
+        return False
+
+if __name__ == '__main__':
+    print("🔄 Updating animation system in all sections...")
+    print("-" * 60)
+    
+    success_count = 0
+    for filepath in FILES_TO_UPDATE:
+        if update_file(filepath):
+            success_count += 1
+    
+    print("-" * 60)
+    print(f"✅ {success_count}/{len(FILES_TO_UPDATE)} files updated!")
